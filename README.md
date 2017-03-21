@@ -2,8 +2,12 @@
 
 #######NEW IDEA########
 # EMERGENCY 911 ANALYSIS AND PREDICTION
+
+![Alt text](download.jpg?raw=true)
  
 This project aims at giving a snapshot of the emergencies occurring in an area over the period which can help the Emergency Services to make available more resources in the emergency prone area. We will plot the emergency occurrences for the location using Google Maps API. Additionally, the location can be zoomed to provide the weekly statistics in a graphical form for data visualization.
+
+![Alt text](Map-multiple-locations.jpg?raw=true)
  
 Also, we will analyze the data of a week on an hourly basis to predict the timespan at which there is a high probability of an emergency occurrence and then present the data graphically. By looking at the graph, we will predict the trend of emergencies. For instance, in case of vehicle accidents, analyzing the data to find the hour of the day when the number of vehicle accidents were maximum. This would help the emergency services to make sure that they can deploy more resources at that time of the day.
 
