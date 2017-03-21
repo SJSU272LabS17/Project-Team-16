@@ -13,7 +13,11 @@ Also, we will analyze the data of a week on an hourly basis to predict the times
 
 We will also compare the occurrences of different emergency types like Assault, Accidents, Fire, Medical Emergencies etc. For instance, when there are emergencies of one type occurring more frequently than others, the graph can help the emergency services to allocate the resources accordingly.
 
-
+## ok.. I like it. However 911 analysis itself does not provide enough value. Add the following:
+<li> how many are fake 911 calls made? and how much they cost to the police dept?
+<li> bring the small business data and find correlation between number of small business in the area and number of 911 calls made in that cluster
+<li> bring the home value data into picture and find correlation
+If all 3 implemented , APPROVED
 
 
 
