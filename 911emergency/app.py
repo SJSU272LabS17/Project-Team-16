@@ -36,7 +36,8 @@ def emergency():
 
 
 # read 911 csv
-data = read_csv("/Users/manika/Documents/SJSU/CMPE272/project/montgomeryPA_911.csv")
+cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
+data = read_csv(cwd)
 pandas.to_datetime(data['timeStamp'])
 
 def emergency_overview(year):
