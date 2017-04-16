@@ -1,0 +1,10 @@
+<div class="jumbotron text-center">
+	<b><h2>Memory Usage</h2></b>
+	<form>
+		<label><input type="radio" name="mode" value="MemoryUsage" checked> Memory Usage</label>
+		<label><input type="radio" name="mode" value="CPUUsage" > CPU Usage</label>
+	</form>
+	<div id="memoryLineChart" ng-app='sampleApp' ng-controller="LineController" data="exampleData"><svg width="960" height="500"></svg></div>
+</div>
+
+
