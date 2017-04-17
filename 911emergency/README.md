@@ -9,4 +9,8 @@
   <li> Install node monitor --> npm install -g nodemon
   <li> Open the app at http://localhost:8080
 </ul> 
-  
+
+<ul> For Python:
+<li> Install python 3 or above versions
+<li> run requirement.txt file with: pip install -r requirement.txt
+</ul>
