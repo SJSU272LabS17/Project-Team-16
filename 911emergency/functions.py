@@ -6,7 +6,11 @@ import os
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
 data = read_csv(cwd)
+
+#converting the timestamp to pandas datetime format
 pandas.to_datetime(data['timeStamp'])
+
+#Emergency overview for an year input by the user
 def emergency_overview(year):
     overview_data = data[data['timeStamp'].str.contains(year)]
     overview_data_ems = overview_data[overview_data['title'].str.contains('EMS:')]
@@ -20,63 +24,28 @@ def emergency_overview(year):
     result = json.dumps(dictionary)
     return dictionary
 
-#print (emergency_overview('2016'))
+print (emergency_overview('2016'))
 
+#Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
-    x = trend_data[trend_data['title'].str.contains(emergency_type + " " + sub_emergency_type)]
-    jan_count = len((x[x['timeStamp'].str.contains(year+'/1/')]).index)
-    feb_count = len((x[x['timeStamp'].str.contains(year+'/2/')]).index)
-    mar_count = len((x[x['timeStamp'].str.contains(year+'/3/')]).index)
-    apr_count = len((x[x['timeStamp'].str.contains(year+'/4/')]).index)
-    may_count = len((x[x['timeStamp'].str.contains(year+'/5/')]).index)
-    jun_count = len((x[x['timeStamp'].str.contains(year+'/6/')]).index)
-    jul_count = len((x[x['timeStamp'].str.contains(year+'/7/')]).index)
-    aug_count = len((x[x['timeStamp'].str.contains(year+'/8/')]).index)
-    sep_count = len((x[x['timeStamp'].str.contains(year+'/9/')]).index)
-    oct_count = len((x[x['timeStamp'].str.contains(year+'/10/')]).index)
-    nov_count = len((x[x['timeStamp'].str.contains(year+'/11/')]).index)
-    dec_count = len((x[x['timeStamp'].str.contains(year+'/12/')]).index)
-    dict_trend = {'Jan': jan_count, 'Feb': feb_count, 'Mar': mar_count, 'Apr': apr_count, 'May': may_count, 'Jun': jun_count, 'Jul': jul_count, 'Aug': aug_count, 'Sep': sep_count, 'Oct': oct_count, 'Nov': nov_count, 'Dec': dec_count}
-    dict_trend = [{"label": i , "value": j} for i,j in dict_trend.items()]
-    return dict_trend
+    trend_data = trend_data[trend_data['title'].str.contains(emergency_type + " " + sub_emergency_type)]
+    month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    dict_trend = {}
+    for i in range(1, 13):
+        count = len((trend_data[trend_data['timeStamp'].str.contains(year+'/'+str(i)+'/')]).index)
+        dict_trend[month[i-1]] = count
+        trend_data_dict = [{"label": i , "value": j} for i,j in dict_trend.items()]
+    return trend_data_dict
 
-#print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
+print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
 
+#Trend comparison for two sub-categories of an emergency type for a specific year
 def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_emergency_type2):
-    trend_data = data[data['timeStamp'].str.contains(year)]
-    trend1_data = trend_data[trend_data['title'].str.contains(emergency_type + " " + sub_emergency_type1)]
-    jan_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/1/')]).index)
-    feb_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/2/')]).index)
-    mar_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/3/')]).index)
-    apr_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/4/')]).index)
-    may_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/5/')]).index)
-    jun_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/6/')]).index)
-    jul_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/7/')]).index)
-    aug_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/8/')]).index)
-    sep_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/9/')]).index)
-    oct_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/10/')]).index)
-    nov_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/11/')]).index)
-    dec_count = len((trend1_data[trend1_data['timeStamp'].str.contains(year+'/12/')]).index)
-    dict_trend1 = {'Jan': jan_count, 'Feb': feb_count, 'Mar': mar_count, 'Apr': apr_count, 'May': may_count, 'Jun': jun_count, 'Jul': jul_count, 'Aug': aug_count, 'Sep': sep_count, 'Oct': oct_count, 'Nov': nov_count, 'Dec': dec_count}
-    dict_trend1 = [{"label": i , "value": j} for i,j in dict_trend1.items()]
-    trend2_data = trend_data[trend_data['title'].str.contains(emergency_type + " " + sub_emergency_type2)]
-    jan_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/1/')]).index)
-    feb_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/2/')]).index)
-    mar_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/3/')]).index)
-    apr_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/4/')]).index)
-    may_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/5/')]).index)
-    jun_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/6/')]).index)
-    jul_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/7/')]).index)
-    aug_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/8/')]).index)
-    sep_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/9/')]).index)
-    oct_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/10/')]).index)
-    nov_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/11/')]).index)
-    dec_count = len((trend2_data[trend2_data['timeStamp'].str.contains(year+'/12/')]).index)
-    dict_trend2 = {'Jan': jan_count, 'Feb': feb_count, 'Mar': mar_count, 'Apr': apr_count, 'May': may_count, 'Jun': jun_count, 'Jul': jul_count, 'Aug': aug_count, 'Sep': sep_count, 'Oct': oct_count, 'Nov': nov_count, 'Dec': dec_count}
-    dict_trend2 = [{"label": i , "value": j} for i,j in dict_trend2.items()]
-    dict_trend = {'trend1': dict_trend1 , 'trend2': dict_trend2}
+    dict_trend1 = emergency_trend(year, emergency_type, sub_emergency_type1)
+    dict_trend2 = emergency_trend(year, emergency_type, sub_emergency_type2)
+    dict_trend = {sub_emergency_type1: dict_trend1 , sub_emergency_type2: dict_trend2}
     dict_trend = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return dict_trend
 
-#print (emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
+print (emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
