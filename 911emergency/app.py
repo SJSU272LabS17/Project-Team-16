@@ -89,5 +89,6 @@ def emergency_trend_comparision(year, emergency_type, sub_emergency_type1, sub_e
     dict_trend = {'trend1': dict_trend1 , 'trend2': dict_trend2}
     dict_trend = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return dict_trend
+   
 if __name__ == '__main__':
    app.run(debug = True)
