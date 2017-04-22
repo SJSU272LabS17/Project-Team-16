@@ -24,7 +24,7 @@ def emergency_overview(year):
     result = json.dumps(dictionary)
     return dictionary
 
-print (emergency_overview('2016'))
+#print (emergency_overview('2016'))
 
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
@@ -38,7 +38,7 @@ def emergency_trend(year, emergency_type, sub_emergency_type):
         trend_data_dict = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return trend_data_dict
 
-print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
+#print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
 
 #Trend comparison for two sub-categories of an emergency type for a specific year
 def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_emergency_type2):
@@ -48,4 +48,22 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
     dict_trend = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return dict_trend
 
-print (emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
+#print (emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
+
+#Hourly data for plotting Heap map for Vehicle accidents
+def heat_map(year):
+    month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    vehicle_accident = data[data['timeStamp'].str.contains(year)]
+    vehicle_accident = vehicle_accident[vehicle_accident['title'].str.contains('VEHICLE ACCIDENT')]
+    dict_monthly = {}
+    dict_hourly = {}
+    for i in range(1, 13):
+        for j in range(0, 24):
+            accidents_month = vehicle_accident[vehicle_accident['timeStamp'].str.contains('/i/')]
+            count = len((vehicle_accident[vehicle_accident['timeStamp'].str.contains(' ' + str(j) + ':')]).index)
+            dict_hourly[str(j)+':00'] = count
+        dict_monthly[month[i-1]] = dict_hourly
+        dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
+    return dict_monthly_hourly
+
+#print (heat_map('2016'))

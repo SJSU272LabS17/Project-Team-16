@@ -17,6 +17,7 @@ def emergency():
         result = json.loads(emergency_overview(year))
         return jsonify(result)
 
+#print (heat_map('2016'))
 #print(emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
 #print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
 #print (emergency_overview('2016'))
