@@ -62,8 +62,9 @@ def heat_map(year):
             accidents_month = vehicle_accident[vehicle_accident['timeStamp'].str.contains('/i/')]
             count = len((vehicle_accident[vehicle_accident['timeStamp'].str.contains(' ' + str(j) + ':')]).index)
             dict_hourly[str(j)+':00'] = count
-        dict_monthly[month[i-1]] = dict_hourly
+        dict_hourly_new = [{"label": i , "value": j} for i,j in dict_hourly.items()]
+        dict_monthly[month[i-1]] = dict_hourly_new
         dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
     return dict_monthly_hourly
 
-#print (heat_map('2016'))
+print (heat_map('2016'))
