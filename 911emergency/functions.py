@@ -1,8 +1,9 @@
+from flask import Flask, render_template, request, make_response, flash, redirect, session, abort, jsonify
 from pandas import *
 import datetime as dt
 import json
 import os
-
+import numpy as np
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
 data = read_csv(cwd)
@@ -21,7 +22,6 @@ def emergency_overview(year):
     count_traffic = len(overview_data_traffic.index)
     dictionary = {"EMS": count_ems, "Fire": count_fire, "Traffic": count_traffic}
     dictionary = [{"label": i , "value": j} for i,j in dictionary.items()]
-    result = json.dumps(dictionary)
     return dictionary
 
 #print (emergency_overview('2016'))
@@ -67,4 +67,17 @@ def heat_map(year):
         dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
     return dict_monthly_hourly
 
-print (heat_map('2016'))
+#print (heat_map('2016'))
+
+#Home value data
+def home_value():
+    cwd = os.getcwd() + '/' + 'home_values.csv'
+    home_data = read_csv(cwd)
+    home_d = home_data['Quarter']
+    home_v = home_data['Values']
+    home_value = dict(zip(home_d, home_v))
+    for key in home_value:
+        home_value[key] = int (home_value[key])
+    home_value = [{"label": i, "value": j} for i, j in home_value.items()]
+    return home_value
+
