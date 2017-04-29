@@ -6,21 +6,40 @@ from functions import *
 app = Flask(__name__)
 @app.route('/')
 def index():
-   return render_template('test.html')
+   return render_template('index.html')
+
 @app.route('/bar')
 def bar():
    return render_template('bar.html')
+
 @app.route('/emergency', methods=['GET', 'POST'])
 def emergency():
-    if request.method == 'POST' or request.method == 'GET':
-        year = request.form.get('year_select')
-        result = json.loads(emergency_overview(year))
-        return jsonify(result)
+    if not request.json or not 'year' in request.json:
+        abort(400)
+    year = request.json['year']
+    result = emergency_overview(year)
+    return jsonify(result)
 
-#print (heat_map('2016'))
-#print(emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
-#print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
-#print (emergency_overview('2016'))
+@app.route('/emergency_trend', methods=['GET', 'POST'])
+def trend():
+    if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type' in request.json:
+        abort(400)
+    year = request.json['year']
+    emergency_type = request.json['emergency_type']
+    sub_emergency_type = request.json['sub_emergency_type']
+    result = emergency_trend(year, emergency_type, sub_emergency_type)
+    return jsonify(result)
+
+@app.route('/trend_comparison', methods=['GET', 'POST'])
+def trend_comparison():
+    if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type1' in request.json or not 'sub_emergency_type2' in request.json:
+        abort(400)
+    year = request.json['year']
+    emergency_type = request.json['emergency_type']
+    sub_emergency_type1 = request.json['sub_emergency_type1']
+    sub_emergency_type2 = request.json['sub_emergency_type2']
+    result = emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_emergency_type2)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -29,7 +29,7 @@ def emergency_overview(year):
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
-    trend_data = trend_data[trend_data['title'].str.contains(emergency_type + " " + sub_emergency_type)]
+    trend_data = trend_data[trend_data['title'].str.contains(emergency_type + ": " + sub_emergency_type)]
     month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     dict_trend = {}
     for i in range(1, 13):
@@ -81,3 +81,23 @@ def home_value():
     home_value = [{"label": i, "value": j} for i, j in home_value.items()]
     return home_value
 
+#google map data
+
+def google_map():
+    map_lat = data['lat']
+    map_lng = data['lng']
+    google_map = dict(zip(map_lat, map_lng))
+    for key in google_map:
+        google_map[key] = float(google_map[key])
+        key = str(key)
+    return google_map
+    #return google_map
+
+print (google_map())
+#print (y)
+
+#print (x)
+#google_map = [{"label": i, "value": j} for i, j in google_map.items()]
+#print (json.dumps(google_map))
+#print (google_map)
+#exit()
