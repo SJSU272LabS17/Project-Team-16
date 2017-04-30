@@ -93,7 +93,7 @@ def google_map():
     return google_map
     #return google_map
 
-print (google_map())
+#print (google_map())
 #print (y)
 
 #print (x)

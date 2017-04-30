@@ -1,0 +1,19 @@
+
+<div class="jumbotron text-center">
+
+
+	<h2>Emergency Overview</h2>
+	<div>
+
+	<select ng-model="year" ng-options="x for x in yearlist">Year</select>
+
+	<input type="button" value="Send" ng-click="postdata(year)" /> <br/><br/>
+	</div>
+
+
+
+
+	<div id="barChart" ng-app='sampleApp' ng-controller="BarController"><svg width="300" height="200"></svg></div>
+
+
+</div>
