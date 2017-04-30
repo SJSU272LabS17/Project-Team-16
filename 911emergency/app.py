@@ -26,7 +26,6 @@ def trend():
     emergency_type = request.json['emergency_type']
     sub_emergency_type = request.json['sub_emergency_type']
     result = emergency_trend(year, emergency_type, sub_emergency_type)
-    print (result)
     return jsonify(result)
 
 #comparison api

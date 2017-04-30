@@ -4,11 +4,12 @@ import datetime as dt
 import json
 import os
 import numpy as np
+
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
 data = read_csv(cwd)
 
-#converting the timestamp to pandas datetime format
+# converting the timestamp to pandas datetime format
 pandas.to_datetime(data['timeStamp'])
 
 #Emergency overview for an year input by the user
