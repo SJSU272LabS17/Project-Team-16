@@ -101,7 +101,6 @@ def emergency_type():
     return result
 #print (emergency_type())
 
-
 def type_trend_values(year,emergency_type):
     all_freq = data[data['timeStamp'].str.contains(year)]
     result = all_freq[all_freq['title'].str.contains(emergency_type)]
@@ -109,8 +108,10 @@ def type_trend_values(year,emergency_type):
     ems_top_5 = result.head(5)
     ems_bottom_5 = result.tail(5)
     result = ems_top_5.append(ems_bottom_5)
-    return result
-
-
-#x = type_trend_values('Traffic')
-#print (json.dumps(x))
+    y = result.index
+    l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    count = 0
+    while count < 10:
+        l[count] = y[count]
+        count = count + 1
+    return l
