@@ -89,7 +89,7 @@ def small_b():
     result = small_business()
     return jsonify(result)
 
-#emergency_expenditure
+#emergency expenditure api
 @app.route('/expenditure', methods=['GET'])
 def expenditure():
     result = emergency_expenditure()
