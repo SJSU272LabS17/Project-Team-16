@@ -65,17 +65,25 @@ def heat_map_generator():
     result = heat_map(year)
     return jsonify(result)
 
+#google_map api
+@app.route('/google', methods=['GET'])
+def google():
+    result = google_map()
+    return jsonify(result)
+
+#median income api
 @app.route('/income', methods=['GET'])
 def income():
     result = income_trend()
-    print (result)
     return jsonify(result)
 
+#home value api
 @app.route('/h_value', methods=['GET'])
 def h_value():
     result = home_value()
     return jsonify(result)
 
+#small business api
 @app.route('/small_b', methods=['GET'])
 def small_b():
     result = small_business()

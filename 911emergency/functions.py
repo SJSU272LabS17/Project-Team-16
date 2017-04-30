@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import os
 import numpy as np
+from itertools import groupby
 
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
@@ -15,7 +16,6 @@ pandas.to_datetime(data['timeStamp'])
 def emergency_type():
     result = ['EMS', 'Fire', 'Traffic']
     return result
-#print (emergency_type())
 
 def type_trend_values(year,emergency_type):
     all_freq = data[data['timeStamp'].str.contains(year)]
@@ -33,8 +33,6 @@ def type_trend_values(year,emergency_type):
         count = count + 1
     return l
 
-x = type_trend_values('2016','Fire')
-
 #Emergency overview for an year input by the user
 def emergency_overview(year):
     overview_data = data[data['timeStamp'].str.contains(year)]
@@ -48,8 +46,6 @@ def emergency_overview(year):
     dictionary = [{"label": i , "value": j} for i,j in dictionary.items()]
     return dictionary
 
-#print (emergency_overview('2016'))
-
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
@@ -62,8 +58,6 @@ def emergency_trend(year, emergency_type, sub_emergency_type):
         trend_data_dict = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return trend_data_dict
 
-#print (emergency_trend('2016', 'EMS:', 'ASSAULT VICTIM'))
-
 #Trend comparison for two sub-categories of an emergency type for a specific year
 def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_emergency_type2):
     dict_trend1 = emergency_trend(year, emergency_type, sub_emergency_type1)
@@ -71,8 +65,6 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
     dict_trend = {sub_emergency_type1: dict_trend1 , sub_emergency_type2: dict_trend2}
     dict_trend = [{"label": i , "value": j} for i,j in dict_trend.items()]
     return dict_trend
-
-#print (emergency_trend_comparison('2016', 'EMS:', 'ASSAULT VICTIM', 'CARDIAC EMERGENCY'))
 
 #Hourly data for plotting Heap map for Vehicle accidents
 def heat_map(year):
@@ -91,30 +83,25 @@ def heat_map(year):
         dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
     return dict_monthly_hourly
 
-# print (heat_map('2016'))
-
+#google map latitude longitude data
 def google_map():
-    map_lat = data['lat']
-    map_lng = data['lng']
-    google_map = dict(zip(map_lat, map_lng))
-    for key in google_map:
-        google_map[key] = float(google_map[key])
-        key = str(key)
-    return google_map
+    result = {39.974950799999995: [-75.2708694, 96], 39.9936176: [-75.2467288, 101],
+               39.999803700000001: [-75.22946800000001, 74],
+               39.9792542: [-75.27134190000001, 66], 30.33359600000000: [-95.5955947, 1],
+               32.387089899999999: [-86.276106, 1],
+               40.402002299999999: [-75.5883713, 1548], 40.000013299999999: [-75.2725051, 3496],
+               40.264473100000004: [-75.26504399999999, 1214],
+               40.248232799999997: [-75.638933, 595], 40.324203000000004: [-75.32794720000001, 2547],
+               40.198858899999998: [-75.1954407, 1448],
+               40.097253100000003: [-75.2837594000000, 487], 40.091716699999999: [-75.3722775, 3414],
+               40.146497199999999: [-75.397862, 1213],
+               40.194672499999996: [-75.47854190000001, 1447]}
+    return result
 
-x = google_map()
-l = []
-for key in x:
-    l.append(int(key))
-    #print (type(int(key)))
-#print (l)
-
+#median household income data
 def income_trend():
     income = {'2013': 76919, '2014' :79495, '2015': 83254 ,'2016' : 88275}
     return income
-
-
-#print (json.dumps(income_trend()))
 
 #Home value data
 def home_value():
@@ -128,6 +115,7 @@ def home_value():
     home_value = [{"label": i, "value": j} for i, j in home_value.items()]
     return home_value
 
+#small business data
 def small_business():
     small_b = {'2013':{'Cleaning & Maintenance': 23889, 'material moving': 24343, 'Personal care': 13154, 'Food and serving': 11778},
                '2014':{'Cleaning & Maintenance': 23567, 'material moving': 22921, 'Personal care': 16632, 'Food and serving': 12931},
