@@ -17,10 +17,11 @@ def type():
 #emergency trend drop-down values api
 @app.route('/type_trend', methods=['GET', 'POST'])
 def trend_sub_dropdown():
-    if not request.json or not 'emergency_type' in request.json:
+    if not request.json or not 'emergency_type' in request.json or not 'year' in request.json:
         abort(400)
+    year = request.json['year']
     emergency_type = request.json['emergency_type']
-    result = type_trend_values(emergency_type)
+    result = type_trend_values(year,emergency_type)
     return jsonify(result)
 
 
