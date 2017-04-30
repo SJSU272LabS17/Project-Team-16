@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify
-from flask_oauth import OAuth
+#from flask_oauth import OAuth
 # from urllib2 import Request, urlopen, URLError
 import json
 from urllib.request import urlopen, URLError, Request
@@ -75,7 +75,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-   return render_template('new.html')
+   return render_template('index.html')
 
 # @app.route('/bar')
 # def bar():
