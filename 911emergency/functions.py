@@ -122,3 +122,8 @@ def small_business():
                '2015':{'Cleaning & Maintenance': 23422, 'material moving': 21601, 'Personal care': 17142,'Food and serving': 14167},
                '2016':{'Cleaning & Maintenance': 23011, 'material moving': 20222, 'Personal care': 18945,'Food and serving': 17498}}
     return small_b
+
+#fake call expenditure
+def emergency_expenditure():
+    result={'2015':[1029868,463005], '2016': [2035999,839475]}
+    return result

@@ -89,5 +89,11 @@ def small_b():
     result = small_business()
     return jsonify(result)
 
+#emergency_expenditure
+@app.route('/expenditure', methods=['GET'])
+def expenditure():
+    result = emergency_expenditure()
+    return jsonify(result)
+
 if __name__ == '__main__':
     app.run(debug = True)
