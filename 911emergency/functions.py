@@ -50,7 +50,9 @@ def emergency_overview(year):
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
     trend_data = trend_data[trend_data['title'].str.contains(sub_emergency_type)]
-    month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    month = ['1454195838', '1456874238', '1459379838', '1462058238', '1464650238',
+             '1467328638', '1469920638', '1472599038', '1475277438', '1477869438',
+             '1480547838', '1483139838']
     dict_trend = {}
     for i in range(1, 13):
         count = len((trend_data[trend_data['timeStamp'].str.contains(year+'/'+str(i)+'/')]).index)
@@ -68,7 +70,9 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
 
 #Hourly data for plotting Heap map for Vehicle accidents
 def heat_map(year):
-    month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    month = ['1454195838', '1456874238', '1459379838', '1462058238', '1464650238',
+             '1467328638', '1469920638', '1472599038', '1475277438', '1477869438',
+             '1480547838', '1483139838']
     vehicle_accident = data[data['timeStamp'].str.contains(year)]
     vehicle_accident = vehicle_accident[vehicle_accident['title'].str.contains('VEHICLE ACCIDENT')]
     dict_monthly = {}
