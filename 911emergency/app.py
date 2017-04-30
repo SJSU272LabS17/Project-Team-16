@@ -24,8 +24,6 @@ def trend_sub_dropdown():
     result = type_trend_values(year,emergency_type)
     return jsonify(result)
 
-
-
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
 def emergency():
@@ -65,9 +63,23 @@ def heat_map_generator():
         abort(400)
     year = request.json['year']
     result = heat_map(year)
+    return jsonify(result)
+
+@app.route('/income', methods=['GET'])
+def income():
+    result = income_trend()
     print (result)
     return jsonify(result)
 
+@app.route('/h_value', methods=['GET'])
+def h_value():
+    result = home_value()
+    return jsonify(result)
+
+@app.route('/small_b', methods=['GET'])
+def small_b():
+    result = small_business()
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug = True)

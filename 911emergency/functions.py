@@ -12,6 +12,29 @@ data = read_csv(cwd)
 # converting the timestamp to pandas datetime format
 pandas.to_datetime(data['timeStamp'])
 
+def emergency_type():
+    result = ['EMS', 'Fire', 'Traffic']
+    return result
+#print (emergency_type())
+
+def type_trend_values(year,emergency_type):
+    all_freq = data[data['timeStamp'].str.contains(year)]
+    result = all_freq[all_freq['title'].str.contains(emergency_type)]
+    result['title'] = result['title'].str.strip(emergency_type+ ":")
+    result = result['title'].value_counts(ascending=True)[:]
+    ems_top_5 = result.head(5)
+    ems_bottom_5 = result.tail(5)
+    result = ems_top_5.append(ems_bottom_5)
+    y = result.index
+    l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    count = 0
+    while count < 10:
+        l[count] = y[count]
+        count = count + 1
+    return l
+
+x = type_trend_values('2016','Fire')
+
 #Emergency overview for an year input by the user
 def emergency_overview(year):
     overview_data = data[data['timeStamp'].str.contains(year)]
@@ -30,7 +53,7 @@ def emergency_overview(year):
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
-    trend_data = trend_data[trend_data['title'].str.contains(emergency_type + ": " + sub_emergency_type)]
+    trend_data = trend_data[trend_data['title'].str.contains(sub_emergency_type)]
     month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     dict_trend = {}
     for i in range(1, 13):
@@ -70,6 +93,29 @@ def heat_map(year):
 
 # print (heat_map('2016'))
 
+def google_map():
+    map_lat = data['lat']
+    map_lng = data['lng']
+    google_map = dict(zip(map_lat, map_lng))
+    for key in google_map:
+        google_map[key] = float(google_map[key])
+        key = str(key)
+    return google_map
+
+x = google_map()
+l = []
+for key in x:
+    l.append(int(key))
+    #print (type(int(key)))
+#print (l)
+
+def income_trend():
+    income = {'2013': 76919, '2014' :79495, '2015': 83254 ,'2016' : 88275}
+    return income
+
+
+#print (json.dumps(income_trend()))
+
 #Home value data
 def home_value():
     cwd = os.getcwd() + '/' + 'home_values.csv'
@@ -82,36 +128,9 @@ def home_value():
     home_value = [{"label": i, "value": j} for i, j in home_value.items()]
     return home_value
 
-#google map data
-
-def google_map():
-    map_lat = data['lat']
-    map_lng = data['lng']
-    google_map = dict(zip(map_lat, map_lng))
-    for key in google_map:
-        google_map[key] = float(google_map[key])
-        key = str(key)
-    return google_map
-    #return google_map
-
-#print (google_map())
-
-def emergency_type():
-    result = ['EMS', 'Fire', 'Traffic']
-    return result
-#print (emergency_type())
-
-def type_trend_values(year,emergency_type):
-    all_freq = data[data['timeStamp'].str.contains(year)]
-    result = all_freq[all_freq['title'].str.contains(emergency_type)]
-    result = result['title'].value_counts(ascending=True)[:]
-    ems_top_5 = result.head(5)
-    ems_bottom_5 = result.tail(5)
-    result = ems_top_5.append(ems_bottom_5)
-    y = result.index
-    l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    count = 0
-    while count < 10:
-        l[count] = y[count]
-        count = count + 1
-    return l
+def small_business():
+    small_b = {'2013':{'Cleaning & Maintenance': 23889, 'material moving': 24343, 'Personal care': 13154, 'Food and serving': 11778},
+               '2014':{'Cleaning & Maintenance': 23567, 'material moving': 22921, 'Personal care': 16632, 'Food and serving': 12931},
+               '2015':{'Cleaning & Maintenance': 23422, 'material moving': 21601, 'Personal care': 17142,'Food and serving': 14167},
+               '2016':{'Cleaning & Maintenance': 23011, 'material moving': 20222, 'Personal care': 18945,'Food and serving': 17498}}
+    return small_b
