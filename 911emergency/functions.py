@@ -67,7 +67,7 @@ def heat_map(year):
         dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
     return dict_monthly_hourly
 
-#print (heat_map('2016'))
+# print (heat_map('2016'))
 
 #Home value data
 def home_value():
@@ -94,10 +94,4 @@ def google_map():
     #return google_map
 
 #print (google_map())
-#print (y)
 
-#print (x)
-#google_map = [{"label": i, "value": j} for i, j in google_map.items()]
-#print (json.dumps(google_map))
-#print (google_map)
-#exit()
