@@ -8,14 +8,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			controller: 'MainController'
 		})
 
-		.when('/line', {
-			templateUrl: 'static/views/line.html',
-			controller: 'LineController'
+		.when('/trend', {
+			templateUrl: 'static/views/trend.html',
+			controller: 'TrendController'
 		})
 
-		.when('/bar', {
-			templateUrl: 'static/views/bar.html',
-			controller: 'BarController'
+		.when('/donut', {
+			templateUrl: 'static/views/donut.html',
+			controller: 'DonutController'
 		});
 
 	$locationProvider.html5Mode(true);

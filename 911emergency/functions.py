@@ -101,21 +101,16 @@ def emergency_type():
     return result
 #print (emergency_type())
 
-def type_trend_values(emergency_type):
-    if emergency_type == 'EMS':
-        result = ['RESPIRATORY EMERGENCY', 'CARDIAC EMERGENCY', 'FALL VICTIM', 'VEHICLE ACCIDENT', 'SUBJECT IN PAIN','HEAD INJURY'
-                  ,'UNKNOWN MEDICAL EMERGENCY', 'SYNCOPAL EPISODE', 'SEIZURES', 'GENERAL WEAKNESS', 'ABDOMINAL PAINS',
-                 'ALTERED MENTAL STATUS', 'MEDICAL ALERT ALARM', 'OVERDOSE', 'HEMORRHAGING', 'CVA/STROKE', 'UNCONSCIOUS SUBJECT', 'NAUSEA/VOMITING']
 
-    if emergency_type == 'Fire':
-        result = ['FIRE ALARM','VEHICLE ACCIDENT','FIRE INVESTIGATION','GAS-ODOR/LEAK','BUILDING FIRE',
-                  'FIRE SPECIAL SERVICE','ELECTRICAL FIRE OUTSIDE','CARBON MONOXIDE DETECTOR','VEHICLE FIRE',
-                  'WOODS/FIELD FIRE']
-
-    if emergency_type == 'Traffic':
-        result = ['VEHICLE ACCIDENT','DISABLED VEHICLE','ROAD OBSTRUCTION','HAZARDOUS ROAD CONDITIONS']
-
+def type_trend_values(year,emergency_type):
+    all_freq = data[data['timeStamp'].str.contains(year)]
+    result = all_freq[all_freq['title'].str.contains(emergency_type)]
+    result = result['title'].value_counts(ascending=True)[:]
+    ems_top_5 = result.head(5)
+    ems_bottom_5 = result.tail(5)
+    result = ems_top_5.append(ems_bottom_5)
     return result
+
 
 #x = type_trend_values('Traffic')
 #print (json.dumps(x))

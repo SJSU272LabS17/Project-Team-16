@@ -1,2 +1,2 @@
-angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'BarCtrl', 'LineCtrl']);
+angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'DonutCtrl', 'TrendCtrl']);
 
