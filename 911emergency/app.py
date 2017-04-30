@@ -8,6 +8,23 @@ app = Flask(__name__)
 def index():
    return render_template('index.html')
 
+#emergency type api
+@app.route('/type', methods=['GET', 'POST'])
+def type():
+    result = emergency_type()
+    return jsonify(result)
+
+#emergency trend drop-down values api
+@app.route('/type_trend', methods=['GET', 'POST'])
+def trend_sub_dropdown():
+    if not request.json or not 'emergency_type' in request.json:
+        abort(400)
+    emergency_type = request.json['emergency_type']
+    result = type_trend_values(emergency_type)
+    return jsonify(result)
+
+
+
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
 def emergency():
