@@ -57,8 +57,13 @@ def emergency_trend(year, emergency_type, sub_emergency_type):
     for i in range(1, 13):
         count = len((trend_data[trend_data['timeStamp'].str.contains(year+'/'+str(i)+'/')]).index)
         dict_trend[month[i-1]] = count
-        trend_data_dict = [{"label": i , "value": j} for i,j in dict_trend.items()]
-    return trend_data_dict
+    trend_data_arr = []
+    for key in dict_trend:
+        l = []
+        l.append(int(key))
+        l.append(dict_trend[key])
+        trend_data_arr.append(l)
+    return trend_data_arr
 
 #Trend comparison for two sub-categories of an emergency type for a specific year
 def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_emergency_type2):
