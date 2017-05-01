@@ -1,6 +1,6 @@
 /*body { padding-top:30px; }*/
 
-/*
+
 
 .webdesigntuts-workshop {
 	background: #151515;
@@ -10,4 +10,33 @@
 	width: 100%;
 }
 
-*/
+.nvd3 text {
+  font: normal 12px sans-serif !important;
+}
+.nvd3 .title {
+  font: normal 12px sans-serif !important;
+}
+.nvtooltip {
+  font-family: sans-serif !important;
+}
+
+#gmaps {
+    width: 450px;
+    height: 450px;
+}
+
+#map {
+    height:420px;
+    width:600px;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
+}
+
+

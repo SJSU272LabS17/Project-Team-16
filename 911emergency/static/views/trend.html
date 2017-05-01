@@ -8,7 +8,7 @@
 
 	<select ng-model="subcategory" ng-options="x for x in subcategoriesData">Sub-Category</select>
 
-	<input type="button" value="Send" ng-click="getTrends(year,category,subcategory)" /> <br/><br/>
+	<input type="button" value="Send" ng-click="getTrends()" /> <br/><br/>
 	</div>
 
 	<div id="trendChart" ng-app='sampleApp' ng-controller="TrendController"><svg width="300" height="200"></svg></div>
