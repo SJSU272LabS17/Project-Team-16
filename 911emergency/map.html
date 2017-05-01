@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>montcoalert.org</title>
+    <style>
+      html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      }
+      #map {
+      height: 100%;
+      }
+    </style>
+  </head>
+  <body> <!--  DataCanary_s fix -->
+      <div id="map" class="main-container"></div>
+    <script>
+
+      function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: {lat: 40.063168, lng: -75.149746}
+     
+      });
+
+      setMarkers(map);
+      
+      // This is for the graph in the map
+      
+      
+       var imageBounds = {
+         north: 39.945713,
+         south: 39.822263,
+         east:  -75.679667,
+         west:  -75.881887
+      };
+
+
+       graphOverlay = new google.maps.GroundOverlay(
+         'https://www.kaggle.io/svf/335955/5dbcf966e98eb8bd5b0c470c3eeb9445/t120helicopter.svg',
+         imageBounds);
+      graphOverlay.setMap(map);
+
+      
+      
+      
+      }
