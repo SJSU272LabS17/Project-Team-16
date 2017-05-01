@@ -131,16 +131,3 @@ def small_business():
 def emergency_expenditure():
     result = {'2015':[1029868,463005], '2016': [2035999,839475]}
     return result
-
-def map_google():
-    lat = data['lat']
-    lng = data['lng']
-    i = 0
-    result = [1]*len(lat)
-    while i < len(lat):
-        l = []
-        l.append(lat[i])
-        l.append(lng[i])
-        result[i] = l
-        i = i + 1
-    return result
