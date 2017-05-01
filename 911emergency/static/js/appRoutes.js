@@ -16,6 +16,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/donut', {
 			templateUrl: 'static/views/donut.html',
 			controller: 'DonutController'
+		})
+
+		.when('/trend_comparison', {
+			templateUrl: 'static/views/trend_comparison.html',
+			controller: 'TrendController'
+		})
+
+		.when('/map', {
+			templateUrl: 'static/views/map.html',
+			controller: 'MapController'
 		});
 
 	$locationProvider.html5Mode(true);

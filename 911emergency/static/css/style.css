@@ -1,6 +1,6 @@
 /*body { padding-top:30px; }*/
 
-/*
+
 
 .webdesigntuts-workshop {
 	background: #151515;
@@ -10,4 +10,15 @@
 	width: 100%;
 }
 
-*/
+.nvd3 text {
+  font: normal 12px sans-serif !important;
+}
+.nvd3 .title {
+  font: normal 12px sans-serif !important;
+}
+.nvtooltip {
+  font-family: sans-serif !important;
+}
+...
+
+

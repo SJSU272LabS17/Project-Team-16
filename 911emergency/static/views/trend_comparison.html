@@ -1,0 +1,20 @@
+<div class="jumbotron text-center">
+	<b><h2>Compare Emergency Trends</h2></b>
+	<div>
+
+	<select ng-model="year" ng-options="x for x in yearlist">Year</select>
+
+	<select ng-model="category" ng-init="categories()" ng-options="x for x in categoriesData" ng-change = "subcategories()">Category</select>
+
+	<select ng-model="subcategory1" ng-options="x for x in subcategoriesData">Sub-Category 1</select>
+
+	<select ng-model="subcategory2" ng-options="x for x in subcategoriesData">Sub-Category 2</select>
+
+	<input type="button" value="Compare" ng-click="compareTrends()" /> <br/><br/>
+	</div>
+
+	<div id="trendCompChart" ng-app='sampleApp' ng-controller="TrendController"><svg width="300" height="200"></svg></div>
+
+</div>
+
+
