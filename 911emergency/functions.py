@@ -26,12 +26,12 @@ def type_trend_values(year,emergency_type):
     ems_bottom_5 = result.tail(5)
     result = ems_top_5.append(ems_bottom_5)
     y = result.index
-    l = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    result_ret = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     count = 0
     while count < 10:
-        l[count] = y[count]
+        result_ret[count] = y[count]
         count = count + 1
-    return l
+    return result_ret
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
@@ -75,22 +75,18 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
 
 #Hourly data for plotting Heap map for Vehicle accidents
 def heat_map(year):
-    month = ['1454195838', '1456874238', '1459379838', '1462058238', '1464650238',
-             '1467328638', '1469920638', '1472599038', '1475277438', '1477869438',
-             '1480547838', '1483139838']
-    vehicle_accident = data[data['timeStamp'].str.contains(year)]
+    vehicle_accident = data[data['timeStamp'].str.contains('2016')]
     vehicle_accident = vehicle_accident[vehicle_accident['title'].str.contains('VEHICLE ACCIDENT')]
-    dict_monthly = {}
-    dict_hourly = {}
+    result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     for i in range(1, 13):
+        l = []
         for j in range(0, 24):
-            accidents_month = vehicle_accident[vehicle_accident['timeStamp'].str.contains('/i/')]
-            count = len((vehicle_accident[vehicle_accident['timeStamp'].str.contains(' ' + str(j) + ':')]).index)
-            dict_hourly[str(j)+':00'] = count
-        dict_hourly_new = [{"label": i , "value": j} for i,j in dict_hourly.items()]
-        dict_monthly[month[i-1]] = dict_hourly_new
-        dict_monthly_hourly = [{"label": i , "value": j} for i,j in dict_monthly.items()]
-    return dict_monthly_hourly
+            accidents_month = vehicle_accident[vehicle_accident['timeStamp'].str.contains('/' + str(i) + '/')]
+            accidents_month = accidents_month[accidents_month['timeStamp'].str.contains(' ' + str(j) + ':')]
+            count = len(accidents_month)
+            l.append(count)
+        result[i - 1] = l
+    return result
 
 #google map latitude longitude data
 def google_map():
@@ -134,5 +130,5 @@ def small_business():
 
 #fake call expenditure
 def emergency_expenditure():
-    result={'2015':[1029868,463005], '2016': [2035999,839475]}
+    result = {'2015':[1029868,463005], '2016': [2035999,839475]}
     return result

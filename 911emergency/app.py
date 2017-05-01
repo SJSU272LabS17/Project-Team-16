@@ -1,9 +1,14 @@
-from flask import Flask, render_template, request, make_response, flash, redirect, session, abort, jsonify
+from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify
+from flask_oauth import OAuth
 import json
+from urllib.request import urlopen
+from urllib.request import urlopen, URLError, Request
 from urllib.request import urlopen
 from functions import *
 
 app = Flask(__name__)
+
+#home route
 @app.route('/')
 def index():
    return render_template('index.html')
