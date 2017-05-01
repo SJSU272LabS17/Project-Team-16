@@ -77,7 +77,7 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
 def heat_map(year):
     vehicle_accident = data[data['timeStamp'].str.contains('2016')]
     vehicle_accident = vehicle_accident[vehicle_accident['title'].str.contains('VEHICLE ACCIDENT')]
-    result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    result = [1]*12
     for i in range(1, 13):
         l = []
         for j in range(0, 24):
@@ -90,17 +90,16 @@ def heat_map(year):
 
 #google map latitude longitude data
 def google_map():
-    result = {39.974950799999995: [-75.2708694, 96], 39.9936176: [-75.2467288, 101],
-               39.999803700000001: [-75.22946800000001, 74],
-               39.9792542: [-75.27134190000001, 66], 30.33359600000000: [-95.5955947, 1],
-               32.387089899999999: [-86.276106, 1],
-               40.402002299999999: [-75.5883713, 1548], 40.000013299999999: [-75.2725051, 3496],
-               40.264473100000004: [-75.26504399999999, 1214],
-               40.248232799999997: [-75.638933, 595], 40.324203000000004: [-75.32794720000001, 2547],
-               40.198858899999998: [-75.1954407, 1448],
-               40.097253100000003: [-75.2837594000000, 487], 40.091716699999999: [-75.3722775, 3414],
-               40.146497199999999: [-75.397862, 1213],
-               40.194672499999996: [-75.47854190000001, 1447]}
+    lat = data['lat']
+    lng = data['lng']
+    i = 0
+    result = [1] * len(lat)
+    while i < len(lat):
+        l = []
+        l.append(lat[i])
+        l.append(lng[i])
+        result[i] = l
+        i = i + 1
     return result
 
 #median household income data
@@ -131,4 +130,17 @@ def small_business():
 #fake call expenditure
 def emergency_expenditure():
     result = {'2015':[1029868,463005], '2016': [2035999,839475]}
+    return result
+
+def map_google():
+    lat = data['lat']
+    lng = data['lng']
+    i = 0
+    result = [1]*len(lat)
+    while i < len(lat):
+        l = []
+        l.append(lat[i])
+        l.append(lng[i])
+        result[i] = l
+        i = i + 1
     return result
