@@ -37,9 +37,8 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
 ];
 	var bounds = new google.maps.LatLngBounds();
 	var mapOptions = {
-        zoom: 4,
-        center: new google.maps.LatLng(39.974950799999995, -75.2708694),
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        zoom: 10,
+        center: new google.maps.LatLng(39.974950799999995, -75.4999024)
     }
 
     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -59,12 +58,12 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
         bounds.extend(marker.position);
         marker.content = '<div class="infoWindowContent">' + info.value + '</div>';
 
-        marker.showInfoWindow();
+        //marker.showInfoWindow();
 
         map.fitBounds(bounds);
 
         var listener = google.maps.event.addListener(map, "idle", function () {
-		    map.setZoom(3);
+		    map.setZoom(20);
 		    google.maps.event.removeListener(listener);
 		});
         
