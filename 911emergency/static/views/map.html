@@ -1,6 +1,7 @@
 <div ng-app="sampleApp" ng-controller="MapCtrl">
-    <div id="map"></div>
+    <div id="map" ng-click="getMapData()"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'" ng-init="getMapData()">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+         <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
+         <a href="#" ng-click="getMapData()">{{marker.title}}</a>
     </div>
 </div>
