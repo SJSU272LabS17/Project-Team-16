@@ -72,11 +72,13 @@ var locations = [
 
 	var mapOptions = {
         zoom: 10,
-        center: new google.maps.LatLng(40.063168, -75.149746)
+        center: new google.maps.LatLng(40.063168, -75.149746),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
+    var mcOptions = {gridSize: 50, maxZoom: 15, imagePath: 'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m'};
+    
     $scope.markers = [];
     
     var infoWindow = new google.maps.InfoWindow();
@@ -111,15 +113,17 @@ var locations = [
         createMarker(cities[i]);
     }
 
+    var mc = new MarkerClusterer(map, $scope.markers, mcOptions);
+
     $scope.openInfoWindow = function(e, selectedMarker){
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
     }
 
-    $scope.getMapData = function(){
+    /*$scope.getMapData = function(){
     	$http.post('/google').then(function (response) {
     		console.log(response.data);
     	});
-    }
+    }*/
 
 });
