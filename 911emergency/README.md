@@ -13,7 +13,7 @@
   <li> git clone the project From https://github.com/SJSU272LabS17/Project-Team-16.git
   <li> cd ./Project-Team-16/911emergency/
   <li> pip install -r requirements.txt
-
+</ul>
 <ul> Run the app
   <li> python3.6 app.py
 </ul>
