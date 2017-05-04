@@ -126,7 +126,7 @@ def home_value():
     home_data = read_csv(cwd)
     home_d = home_data['Year']
     home_v = home_data['Value']
-    result = [{"label": "Crime", "value" : [[int(home_d[0]),count_2013],[int(home_d[1]),count_2014],[int(home_d[2]),count_2015],[int(home_d[3]),count_2016],[int(home_d[4]),count_2017]]},
+    result = [{"label": "911 calls", "value" : [[int(home_d[0]),count_2013],[int(home_d[1]),count_2014],[int(home_d[2]),count_2015],[int(home_d[3]),count_2016],[int(home_d[4]),count_2017]]},
                {"label" : "Home Value", "value" : [[int(home_d[0]),int(home_v[0])],[int(home_d[1]),int(home_v[1])],[int(home_d[2]),int(home_v[2])],[int(home_d[3]),int(home_v[3])],[int(home_d[4]),int(home_v[4])]]}]
     return result
 
