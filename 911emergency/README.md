@@ -1,19 +1,17 @@
-# Pre-requisites for running the app
-
-<ul> Install python virtualenv 
-<li> For Windows refer http://python.org  </li>
-<li> Mac - pip install virtualenv </li>
-</ul>
-<ul> Activate the env
-  <li> virtualenv -p /usr/local/bin/python3.6 \*<project-name>\*
-  <li> if the above step fails make sure python3.6 is installed or check python path using below command
-  <li> which python
-  <li> source ./\*<project-name>\*/bin/activate
-<ul> Clone the repo
-  <li> git clone the project From https://github.com/SJSU272LabS17/Project-Team-16.git
-  <li> cd ./Project-Team-16/911emergency/
-  <li> pip install -r requirements.txt
-</ul>
-<ul> Run the app
-  <li> python3.6 app.py
-</ul>
+**Steps to Run the app**
+ - For Windows refer
+   - ```http://python.org```
+ - For Mac
+   - ```pip install virtualenv```
+   - To Activate the env
+     - ```virtualenv -p /usr/local/bin/python3.6 <project-name>```
+     - ### Note ***```if the above step fails make sure python3.6 is installed or check python path using below command```***
+     - Run command ```which python```
+     - Run command ```source ./<project-name>/bin/activate```
+- Now Clone the repo in current directory
+  - ```git clone https://github.com/SJSU272LabS17/Project-Team-16.git```
+  - ```cd ./Project-Team-16/911emergency/```
+- Install the libaries using Pip
+  -  ```pip install -r requirements.txt```
+- Run the app
+  - ```python3.6 app.py```
