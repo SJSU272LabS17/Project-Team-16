@@ -8,7 +8,7 @@
   <li> virtualenv -p /usr/local/bin/python3.6 <project-name>
   <li> if the above step fails make sure python3.6 is installed or check python path using below command
   <li> which python
-  <li> source ./<project-name>/bin/activate
+  <li> source ./\<project-name>\/bin/activate
 <ul> Clone the repo
   <li> git clone the project From https://github.com/SJSU272LabS17/Project-Team-16.git
   <li> cd ./Project-Team-16/911emergency/
