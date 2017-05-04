@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify,g
 import json
+# from flask_inputs.validators import JsonSchema
+from jsonschema import validate, ValidationError
 from urllib.request import urlopen
 from urllib.request import urlopen, URLError, Request
 from urllib.request import urlopen
@@ -8,6 +10,9 @@ from flask_httpauth import HTTPBasicAuth
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from myapp_functions import *
+import  myexception
+
+
 
 
 app = Flask(__name__)
@@ -34,18 +39,37 @@ class User(db.Model):
 
 @app.route('/sign_up', methods = ['POST'])
 def new_user():
-    username = request.json.get('username')
-    password = request.json.get('password')
-    if username is None or password is None:
-        abort(400) # missing arguments
+    username = request.authorization.username
+    password = request.authorization.password
+    if username == '' or password == '':
+        raise myexception.Unauthorized("Please enter username and password", 401)  # missing arguments
     elif User.query.filter_by(username = username).first() is not None:
-        abort(400) # existing user
+        raise myexception.UserExists("Already user exists", 402)  # existing user
     else:
         user = User(username = username)
         user.hash_password(password)
         db.session.add(user)
         db.session.commit()
         return jsonify({ 'username': user.username })
+
+
+@app.errorhandler(myexception.MyExceptions)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+
+@app.route('/login', methods=['POST'])
+def authenticate():
+    if session['logged_in'] == False:
+        username = request.json.get('username')
+        password = request.json.get('password')
+        if username is None or password is None:
+            abort(400)  # missing arguments
+        elif User.query.filter_by(username=username).first() is not None:
+            verify_password(username,password)
+
 
 # @app.route('/api/resource')
 # @auth.login_required
@@ -91,15 +115,25 @@ def trend_sub_dropdown():
     result = type_trend_values(year,emergency_type)
     return jsonify(result)
 
+
+schema = {
+    "type" : "object",
+    "properties" : {
+    "year" : {"type" : "string"}
+    },
+}
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def emergency():
-    if not request.json or not 'year' in request.json:
-        abort(400)
-    year = request.json['year']
-    result = emergency_overview(year)
-    return jsonify(result)
+    input = request.json
+    try:
+        validate(input, schema)
+        year = request.json['year']
+        result = emergency_overview(year)
+        return jsonify(result)
+    except ValidationError as e:
+        raise myexception.CheckPostData("year is integer, accepting string", 400)
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])

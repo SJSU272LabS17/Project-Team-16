@@ -5,6 +5,7 @@ import json
 import os
 import numpy as np
 from itertools import groupby
+import myexception
 
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
@@ -35,6 +36,8 @@ def type_trend_values(year,emergency_type):
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
+    if (year == ''):
+        raise myexception.CheckPostData("Year is empty")
     overview_data = data[data['timeStamp'].str.contains(year)]
     overview_data_ems = overview_data[overview_data['title'].str.contains('EMS:')]
     overview_data_fire = overview_data[overview_data['title'].str.contains('Fire:')]
@@ -45,6 +48,8 @@ def emergency_overview(year):
     dictionary = {"EMS": count_ems, "Fire": count_fire, "Traffic": count_traffic}
     dictionary = [{"label": i , "value": j} for i,j in dictionary.items()]
     return dictionary
+
+# print (emergency_overview(''))
 
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
