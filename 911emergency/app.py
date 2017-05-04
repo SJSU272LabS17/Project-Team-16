@@ -9,11 +9,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
-from myapp_functions import *
+from functions import *
 import  myexception
-
-
-
 
 app = Flask(__name__)
 
@@ -66,7 +63,8 @@ def authenticate():
         username = request.json.get('username')
         password = request.json.get('password')
         if username is None or password is None:
-            abort(400)  # missing arguments
+            raise myexception.Unauthorized("Please enter username and password", 401)
+            # abort(400)  # missing arguments
         elif User.query.filter_by(username=username).first() is not None:
             verify_password(username,password)
 
@@ -124,7 +122,7 @@ schema = {
 }
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
-# @auth.login_required
+@auth.login_required
 def emergency():
     input = request.json
     try:
@@ -133,7 +131,7 @@ def emergency():
         result = emergency_overview(year)
         return jsonify(result)
     except ValidationError as e:
-        raise myexception.CheckPostData("year is integer, accepting string", 400)
+        raise myexception.CheckPostData("year is integer, accepting string", 403)
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])
