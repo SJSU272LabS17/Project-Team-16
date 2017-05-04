@@ -5,6 +5,7 @@ import json
 import os
 import numpy as np
 from itertools import groupby
+# import myexception
 
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
@@ -35,6 +36,8 @@ def type_trend_values(year,emergency_type):
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
+    # if (year == ''):
+    #     raise myexception.CheckPostData("Year is empty")
     overview_data = data[data['timeStamp'].str.contains(year)]
     overview_data_ems = overview_data[overview_data['title'].str.contains('EMS:')]
     overview_data_fire = overview_data[overview_data['title'].str.contains('Fire:')]
@@ -45,6 +48,8 @@ def emergency_overview(year):
     dictionary = {"EMS": count_ems, "Fire": count_fire, "Traffic": count_traffic}
     dictionary = [{"label": i , "value": j} for i,j in dictionary.items()]
     return dictionary
+
+# print (emergency_overview(''))
 
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
@@ -107,24 +112,30 @@ def income_trend():
     income = {'2013': 76919, '2014' :79495, '2015': 83254 ,'2016' : 88275}
     return income
 
-#Home value Data
+#Home value data
 def home_value():
-    cwd = os.getcwd() + '/' + 'home_values.csv'
+    count_2013 = 8850159
+    count_2014 = 8244159
+    overview_data_2015 = data[data['timeStamp'].str.contains('2015')]
+    count_2015 = len(overview_data_2015.index)
+    overview_data_2016 = data[data['timeStamp'].str.contains('2016')]
+    count_2016 = len(overview_data_2016.index)
+    overview_data_2017 = data[data['timeStamp'].str.contains('2017')]
+    count_2017 = len(overview_data_2017.index)
+    cwd = os.getcwd() + '/' + 'home_values_yearly.csv'
     home_data = read_csv(cwd)
-    home_d = home_data['Quarter']
-    home_v = home_data['Values']
-    home_value = dict(zip(home_d, home_v))
-    for key in home_value:
-        home_value[key] = int (home_value[key])
-    home_value = [{"label": i, "value": j} for i, j in home_value.items()]
-    return home_value
+    home_d = home_data['Year']
+    home_v = home_data['Value']
+    result = [{"label": "Crime", "value" : [[int(home_d[0]),count_2013],[int(home_d[1]),count_2014],[int(home_d[2]),count_2015],[int(home_d[3]),count_2016],[int(home_d[4]),count_2017]]},
+               {"label" : "Home Value", "value" : [[int(home_d[0]),int(home_v[0])],[int(home_d[1]),int(home_v[1])],[int(home_d[2]),int(home_v[2])],[int(home_d[3]),int(home_v[3])],[int(home_d[4]),int(home_v[4])]]}]
+    return result
 
 #small business data
 def small_business():
-    small_b = {'2013':{'Cleaning & Maintenance': 23889, 'material moving': 24343, 'Personal care': 13154, 'Food and serving': 11778},
-               '2014':{'Cleaning & Maintenance': 23567, 'material moving': 22921, 'Personal care': 16632, 'Food and serving': 12931},
-               '2015':{'Cleaning & Maintenance': 23422, 'material moving': 21601, 'Personal care': 17142,'Food and serving': 14167},
-               '2016':{'Cleaning & Maintenance': 23011, 'material moving': 20222, 'Personal care': 18945,'Food and serving': 17498}}
+    small_b = [{"label" : "Cleaning & Maintenance", "value": [[2013, 23889], [2014, 23567], [2015, 23422], [2016, 23011]]}, \
+               {"label" : "material moving", "value": [[2013, 24343], [2014, 22921], [2015, 21601], [2016, 20222]]}, \
+               {"label" : "Personal care", "value": [[2013, 13154], [2014, 16632], [2015, 17142], [2016, 18945]]}, \
+               {"label" : "Food and serving", "value": [[2013, 11778], [2014, 12931], [2015, 14167], [2016, 17498]]}]
     return small_b
 
 #fake call expenditure
