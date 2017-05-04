@@ -107,7 +107,7 @@ def income_trend():
     income = {'2013': 76919, '2014' :79495, '2015': 83254 ,'2016' : 88275}
     return income
 
-#Home value data
+#Home value Data
 def home_value():
     cwd = os.getcwd() + '/' + 'home_values.csv'
     home_data = read_csv(cwd)
