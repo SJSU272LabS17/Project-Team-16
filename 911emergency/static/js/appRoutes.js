@@ -26,6 +26,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/map', {
 			templateUrl: 'static/views/map.html',
 			controller: 'MapController'
+		})
+
+		.when('/fake', {
+			templateUrl: 'static/views/fake.html',
+			controller: 'FakeCallController'
 		});
 
 	$locationProvider.html5Mode(true);
