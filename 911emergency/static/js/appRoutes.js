@@ -31,6 +31,16 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/fake', {
 			templateUrl: 'static/views/fake.html',
 			controller: 'FakeCallController'
+		})
+
+		.when('/home', {
+			templateUrl: 'static/views/home_values.html',
+			controller: 'TrendController'
+		})
+
+		.when('/small_b', {
+			templateUrl: 'static/views/small_b.html',
+			controller: 'TrendController'
 		});
 
 	$locationProvider.html5Mode(true);

@@ -12,7 +12,8 @@ app.controller("FakeCallController", function ($scope, $http) {
     color: "#BD362F",
     values:
     [      
-      { x : "2015", y : 463005 },
+      { x : "2014", y : 167043 },
+      { x : "2015", y : 363005 },
       { x : "2016", y : 839475 }
     ]
   },
@@ -21,6 +22,7 @@ app.controller("FakeCallController", function ($scope, $http) {
     color: "#51A351",
     values:
     [      
+      { x : "2014", y : 835215 },
       { x : "2015", y : 1029868 },
       { x : "2016", y : 2035999 } 
     ]
@@ -38,7 +40,7 @@ app.controller("FakeCallController", function ($scope, $http) {
   
 
     chart.xAxis
-        .tickValues([2015, 2016])
+        .tickValues([2014, 2015, 2016])
         .tickFormat(function(d) {
            return d;
          })
