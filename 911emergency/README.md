@@ -1,16 +1,19 @@
 # Pre-requisites for running the app
 
-<ul> Install Node Js and NPM 
-<li> Windows - http://blog.teamtreehouse.com/install-node-js-npm-windows </li>
-<li> Mac - brew install node </li>
+<ul> Install python virtualenv 
+<li> For Windows refer http://python.org  </li>
+<li> Mac - pip install virtualenv </li>
 </ul>
-<ul> Run the App
-  <li> npm install --> Installs all the dependencies
-  <li> Install node monitor --> npm install -g nodemon
-  <li> Open the app at http://localhost:8080
-</ul> 
+<ul> Activate the env
+  <li> virtualenv -p /usr/local/bin/python3.6 <project-name>
+  <li> if the above step fails make sure python3.6 is installed or check python path using below command
+  <li> which python
+  <li> source ./<project-name>/bin/activate
+<ul> Clone the repo
+  <li> git clone the project From https://github.com/SJSU272LabS17/Project-Team-16.git
+  <li> cd ./Project-Team-16/911emergency/
+  <li> pip install -r requirements.txt
 
-<ul> For Python:
-<li> Install python 3 or above versions
-<li> run requirement.txt file with: pip install -r requirement.txt
+<ul> Run the app
+  <li> python3.6 app.py
 </ul>
