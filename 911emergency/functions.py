@@ -5,7 +5,7 @@ import json
 import os
 import numpy as np
 from itertools import groupby
-# import myexception
+import myexception
 
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
@@ -122,7 +122,7 @@ def home_value():
     count_2016 = len(overview_data_2016.index)
     overview_data_2017 = data[data['timeStamp'].str.contains('2017')]
     count_2017 = len(overview_data_2017.index)
-    cwd = os.getcwd() + '/' + 'home_values_yearly.csv'
+    cwd = os.getcwd() + '/' + 'home_values.csv'
     home_data = read_csv(cwd)
     home_d = home_data['Year']
     home_v = home_data['Value']
