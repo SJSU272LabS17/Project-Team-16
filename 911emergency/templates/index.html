@@ -1,7 +1,287 @@
+<style>
+
+.navbar-right{
+	margin-top: -33px;
+	font-size: 24px;
+}
+.img-arredondadaSide {
+  border-radius: 100%;
+  overflow: hidden;
+  height: 100px;
+  width:100px;
+  background: black;
+  margin-top:10px;
+  margin-left: 5px;
+
+}
+
+.img-arredondadaChat {
+  border-radius: 100%;
+  overflow: hidden;
+  height: 50px;
+  width:50px;
+  background: black;
+
+}
+.tema{
+  color:red;
+}
+
+.chat-container {
+    width: 400px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.corStatusFinalizado{
+  color:green;
+}
+.corNormal{
+  color:#3366FF;
+}
+
+.corStatusNaoFinalizado{
+  color:red;
+}
+
+.alinharCentro{
+  text-align: center;
+}
+.user-panel {
+  padding: 10px;
+}
+.user-panel:before,
+.user-panel:after {
+  display: table;
+  content: " ";
+}
+.user-panel:after {
+  clear: both;
+}
+.user-panel > .image > img {
+  width: 45px;
+  height: 45px;
+}
+.user-panel > .info {
+  font-weight: 600;
+  padding: 5px 5px 5px 15px;
+  font-size: 14px;
+  line-height: 1;
+}
+.user-panel > .info > p {
+  margin-bottom: 9px;
+}
+.user-panel > .info > a {
+  text-decoration: none;
+  padding-right: 5px;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: normal;
+}
+.user-panel > .info > a > .fa,
+.user-panel > .info > a > .ion,
+.user-panel > .info > a > .glyphicon {
+  margin-right: 3px;
+}
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-top: -20px;
+}
+
+#wrapper.toggled {
+  padding-left: 250px;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+  margin-left: -25px;
+}
+.logo{
+	color: rgb(105, 183, 105);
+	font-size: 24px;
+	line-height: 0.0px;
+	margin-top: 26px;
+	font-family: 'Cabin', helvetica, arial, sans-serif;
+}
+.fa {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  font-size-adjust: none;
+  font-stretch: normal;
+  font-feature-settings: normal;
+  font-language-override: normal;
+  font-kerning: auto;
+  font-synthesis: weight style;
+  font-variant: normal;
+  font-size: inherit;
+  text-rendering: auto;
+  padding-right: 10px;
+}
+
+.containerLogin{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-left: auto;
+  width: 30%;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+
+@media only screen and (max-height: 650px) and (min-width:768px){
+
+  #sidebar-wrapper {
+    width: 250px;
+    position: absolute;
+    height:200%;
+  }
+}
+
+
+
+@media only screen and (max-height: 450px) and (min-width:768px){
+
+  #sidebar-wrapper {
+    width: 250px;
+    position: absolute;
+    height:160%;
+  }
+}
+
+@media only screen and (max-height: 1200px) and (min-width:1366px){
+
+  #sidebar-wrapper {
+    width: 250px;
+    position: absolute;
+    height:100%;
+  }
+}
+
+
+@media(min-width:768px) {
+
+.navbar-toggle {
+    display: block;
+}
+
+  #wrapper {
+    padding-left: 120px;
+  }
+
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+
+  #sidebar-wrapper {
+    width: 250px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+
+  }
+
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
+
+
+</style>
+
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<base href="/">
 
 	<title>911 Emergency</title>
@@ -9,10 +289,26 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="/static/libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/css/style.css"> <!-- custom styles -->
-	<link rel="stylesheet" href="/static/libs/nvd3/build/nv.d3.min.css" >
+	<link rel="stylesheet"href="/static/libs/nvd3/build/nv.d3.min.css" >
 	<!-- JS -->
 	<script src="/static/libs/angular/angular.min.js"></script>
 	<script src="/static/libs/angular-route/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0/angular-ui-router.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="static/css/overlayStyle.css">
+	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script src="static/js/index.js"></script>
+
+	<!-- ANGULAR CUSTOM -->
+	<script src="/static/js/controllers/MainCtrl.js"></script>
+	<script src="/static/js/controllers/OverviewCtrl.js"></script>
+	<script src="/static/js/appRoutes.js"></script>
+	<script src="/static/js/app.js"></script>
+	<script src="/static/libs/angular/angular.js"></script>
+	<script src="/static/libs/d3/d3.js"></script>
+	<script src="/static/libs/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
+	<script src="/static/libs/nvd3/build/nv.d3.min.js"></script>
 	<script src=https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js></script>
 	<!-- ANGULAR CUSTOM -->
 	<script src="/static/js/controllers/MainCtrl.js"></script>
@@ -20,46 +316,100 @@
 	<script src="/static/js/controllers/TrendCtrl.js"></script>
 	<script src="/static/js/controllers/MapCtrl.js"></script>
 	<script src="/static/js/controllers/FakeCallCtrl.js"></script>
-	<script src="/static/js/appRoutes.js"></script>
-	<script src="/static/js/app.js"></script>
-	<script src="/static/js/app.config.js"></script>
-	<script src="/static/libs/angular/angular.js"></script>
-	<script src="/static/libs/d3/d3.js"></script>
-	<script src="/static/libs/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
-	<script src="/static/libs/nvd3/build/nv.d3.min.js"></script>
-
-	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
-
 
 </head>
-<body ng-app="sampleApp" ng-controller="DonutController">
-<div class="container">
-
-
+<body ng-app="sampleApp" ng-controller="OverviewController" style="overflow:hidden">
 
 	<!-- HEADER -->
-	<nav class="navbar navbar-inverse">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/">911 Emergency Analysis Dashboard</a>
-		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="/trend">Trends</a></li> -->
-			<li><a href="/donut">Overview</a></li>
-			<li><a href="/trend_comparison">Trend Comparison</a></li>
-			<li><a href="/map">Map</a></li>
-			<li><a href="/fake">Fake Call Expenditure</a></li>
-			<li><a href="/home">Home Value Trends</a></li>
-			<li><a href="/small_b">Small Business Trend</a></li>
-		</ul>
+		<nav class="navbar navbar-default NOnavbar-fixed-top" style="height: 53px;" >
+      <div class="container-fluid">
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed menu-toggle" id="menu-toggle" href="#menu" style="display:block">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+        </div>
+				<a class="NOnavbar-brand" href="/" style="text-decoration:none">
+					<p class="logo">911 Emergency Dashboard</p>
+				</a>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right" style="margin-top: -33px;font-size: 24px;">
+	        <li><a href="#" style="font-family:'Cabin', helvetica, arial, sans-serif">About us</a></li>
+	         <li><a href="#" style="font-family:'Cabin', helvetica, arial, sans-serif">Contact us</a></li>
+	      </ul>
+
+        </div>
+      </div>
+    </nav>
+
+		<div id="wrapper" class="toggled">
+    <div id="sidebar-wrapper" >
+      <ul class="sidebar-nav">
+        <div class="user-panel">
+          <!-- <div class="pull-left image">
+            <img ng-src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/256/blue-user-icon.png" class="img-arredondadaSide" alt="User Image"></img>
+          </div> -->
+          <div class="pull-left info">
+          </br>
+          <p style="color: rgb(105, 183, 105)">Would you  like to : </p>
+        </div>
+      </div>
+      <hr class="colorgraph">
+      <li>
+        <a href="/trend">
+	          <i class="fa fa-home"></i> <span>Trends</span>
+        </a>
+      </li>
+      <li>
+        <a href="/donut">
+          <i class="fa fa-medkit"></i> <span>Overview</span>
+        </a>
+      </li>
+			<li>
+        <a href="/trend_comparison">
+          <i class="fa fa-medkit"></i> <span>Trend Comparison</span>
+        </a>
+      </li>
+			<li>
+        <a href="/map">
+          <i class="fa fa-medkit"></i> <span>Map</span>
+        </a>
+      </li>
+			<li>
+        <a href="/fake">
+          <i class="fa fa-medkit"></i> <span>Fake Call Expenditure</span>
+        </a>
+      </li>
+			<li>
+        <a href="/home">
+          <i class="fa fa-medkit"></i> <span>Home Value Trends</span>
+        </a>
+      </li>
+			<li>
+        <a href="/small_b">
+          <i class="fa fa-medkit"></i> <span>Small Business Trend</span>
+        </a>
+      </li>
+      </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+
+    <!-- /#page-content-wrapper -->
+    </div>
 	</nav>
+
 
 	<!-- ANGULAR DYNAMIC CONTENT -->
 	<div ng-view>
+
 	</div>
 
 
 
-</div>
 </body>
 </html>
