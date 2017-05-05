@@ -41,6 +41,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/small_b', {
 			templateUrl: 'static/views/small_b.html',
 			controller: 'TrendController'
+		})
+
+		.when('/overview', {
+			templateUrl: 'static/views/overview.html',
+			controller: 'OverviewController'
 		});
 
 	$locationProvider.html5Mode(true);
