@@ -1,17 +1,10 @@
-
 <div class="jumbotron text-center">
-
-
-	<h2>Emergency Overview</h2>
+  <h2>Emergency Overview</h2>
 	<div>
-
-	<select ng-model="year" ng-options="x for x in yearlist">Year</select>
-
-	<input type="button" value="Send" ng-click="postdata(year)" /> <br/><br/>
+    <select ng-model="year" ng-options="x for x in yearlist">Year</select>
+    <input type="button" value="Send" ng-click="postdata(year)" /> <br/><br/>
 	</div>
-
-
-	<div id="donutChart" ng-app='sampleApp' ng-controller="DonutController"><svg width="300" height="200"></svg></div>
-
-
+  <div id="donutChart" ng-app='sampleApp' ng-controller="DonutController" style="width:70%;height:70%;margin-left:227px">
+    <svg width="70" height="70"></svg>
+  </div>
 </div>
