@@ -46,8 +46,13 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/overview', {
 			templateUrl: 'static/views/overview.html',
 			controller: 'OverviewController'
+		})
+
+		.when('/heat_map', {
+			templateUrl: 'static/views/heat_map.html',
+			controller: 'HeatMapController'
 		});
 
-	$locationProvider.html5Mode(true);
+$locationProvider.html5Mode(true);
 
 }]);
