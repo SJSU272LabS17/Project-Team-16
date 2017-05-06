@@ -1,3 +1,4 @@
+import itertools
 from flask import Flask, render_template, request, make_response, flash, redirect, session, abort, jsonify
 from pandas import *
 import datetime as dt
@@ -14,25 +15,34 @@ data = read_csv(cwd)
 # converting the timestamp to pandas datetime format
 pandas.to_datetime(data['timeStamp'])
 
+#Generate emergency types
 def emergency_type():
     result = ['EMS', 'Fire', 'Traffic']
     return result
 
+#Generate sub-emergency types
 def type_trend_values(year,emergency_type):
     all_freq = data[data['timeStamp'].str.contains(year)]
     result = all_freq[all_freq['title'].str.contains(emergency_type)]
-    result['title'] = result['title'].str.strip(emergency_type+ ":")
-    result = result['title'].value_counts(ascending=True)[:]
-    ems_top_5 = result.head(5)
-    ems_bottom_5 = result.tail(5)
-    result = ems_top_5.append(ems_bottom_5)
-    y = result.index
-    result_ret = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    count = 0
-    while count < 10:
-        result_ret[count] = y[count]
-        count = count + 1
-    return result_ret
+    df = pandas.DataFrame(result['title'])
+    l = [1] * len(result['title'])
+    i = 0;
+    df_new = df.values.tolist()
+    while i < len(result['title']):
+        l[i] = df_new[i][0][5:]
+        i = i + 1
+    from collections import defaultdict
+    fq = defaultdict(int)
+    for w in l:
+        fq[w] += 1
+    dict1 = {}
+    a1_sorted_keys = sorted(fq, key=fq.get, reverse=True)
+    for r in a1_sorted_keys:
+        dict1[r] = fq[r]
+    len1 = len(dict1)
+    result = []
+    result = list(dict1)[:5] + list(dict1)[len1-5:len1]
+    return result
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
