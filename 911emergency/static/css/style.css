@@ -162,8 +162,9 @@ background-image: url(/static/css/images/background.jpg);
 }
 
 #map {
-    height:700px;
-    width:1100px;
+			height: 700px;
+	    width: 1313px;
+	    margin: auto;
 }
 .infoWindowContent {
     font-size:  14px !important;
