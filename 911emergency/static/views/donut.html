@@ -1,8 +1,14 @@
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" >
+  <div onLoad="postdata('2017');"> </div?
   <h2>Emergency Overview</h2>
 	<div>
-    <select ng-model="year" ng-options="x for x in yearlist">Year</select>
-    <input type="button" value="Send" ng-click="postdata(year)" /> <br/><br/>
+    <!-- <select ng-model="year" ng-options="x for x in yearlist">Year</select> -->
+    <div><a id="myLink" href="#" ng-click="postdata('2015');">2015</a></div>
+    <div><a id="myLink" href="#" ng-click="postdata('2016');">2016</a></div>
+    <div><a id="myLink1" href="#" ng-click="postdata('2017');">2017</a></div>
+
+
+    <!-- <input type="button" value="Send" ng-click="postdata(year)" /> <br/><br/> -->
 	</div>
   <div id="donutChart" ng-app='sampleApp' ng-controller="DonutController" style="width:70%;height:70%;margin-left:227px">
     <svg width="70" height="70"></svg>
