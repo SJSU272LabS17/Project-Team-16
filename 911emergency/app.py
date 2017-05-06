@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify
-#from flask_oauth import OAuth
+# from flask_oauth import OAuth
 import json
 from urllib.request import urlopen
 from urllib.request import urlopen, URLError, Request
@@ -101,4 +101,4 @@ def expenditure():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug = True,threaded=True)

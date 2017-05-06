@@ -1,4 +1,4 @@
-var app = angular.module("HeatmapCtrl", []);
+                     var app = angular.module("HeatmapCtrl", []);
 
 app.controller("HeatMapController", function ($scope, $http) {
 
