@@ -16,7 +16,7 @@ def index():
 #emergency type api
 @app.route('/category', methods=['GET', 'POST'])
 def type():
-    result = emergency_type()
+    result = category()
     return jsonify(result)
 
 #emergency trend drop-down values api
@@ -26,7 +26,7 @@ def trend_sub_dropdown():
         abort(400)
     year = request.json['year']
     emergency_type = request.json['emergency_type']
-    result = type_trend_values(year,emergency_type)
+    result = sub_category(year,emergency_type)
     return jsonify(result)
 
 #emergency overview api

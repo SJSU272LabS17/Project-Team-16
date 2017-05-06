@@ -16,12 +16,12 @@ data = read_csv(cwd)
 pandas.to_datetime(data['timeStamp'])
 
 #Generate emergency types
-def emergency_type():
+def category():
     result = ['EMS', 'Fire', 'Traffic']
     return result
 
 #Generate sub-emergency types
-def type_trend_values(year,emergency_type):
+def sub_category(year,emergency_type):
     all_freq = data[data['timeStamp'].str.contains(year)]
     result = all_freq[all_freq['title'].str.contains(emergency_type)]
     df = pandas.DataFrame(result['title'])
