@@ -2,7 +2,6 @@ var app = angular.module("DonutCtrl", []);
 
 app.controller("DonutController", function ($scope, $http) {
 
-	$scope.yearlist = ['2016','2015'];
 	$scope.postdata = function (yearlist) {
 	var data = {
 	 year: yearlist
@@ -35,5 +34,5 @@ app.controller("DonutController", function ($scope, $http) {
 });
 
 }
-
+$scope.postdata('2017');
 });
