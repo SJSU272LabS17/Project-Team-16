@@ -100,29 +100,30 @@ def heat_map(year):
             l.append(count)
         result[i - 1] = l
     return result
-    # if year == "2016":
-    #     return result_16
-    # elif year == "2017":
-    #     return result_17
 
 #google map latitude longitude data
-def google_map():
+def google_map(year):
+    overview_data = data[data['timeStamp'].str.contains(year)]
+    # print (len (overview_data))
     title = data['title']
     lat = data['lat']
     lng = data['lng']
     i = 0
-    result = [1] * len(lat)
+    result = []
+    j = 0
     while i < len(lat):
-        l = []
-        l.append(lat[i])
-        l.append(lng[i])
-        if "EMS" in title[i]:
-            l.append("EMS")
-        elif "Fire" in title[i]:
-            l.append("Fire")
-        elif "Traffic" in title[i]:
-            l.append("Traffic")
-        result[i] = l
+        if year in data['timeStamp'][i]:
+            j = j + 1
+            l = []
+            l.append(lat[i])
+            l.append(lng[i])
+            if "EMS" in title[i]:
+                l.append("EMS")
+            elif "Fire" in title[i]:
+                l.append("Fire")
+            elif "Traffic" in title[i]:
+                l.append("Traffic")
+            result.append(l)
         i = i + 1
     return result
 
