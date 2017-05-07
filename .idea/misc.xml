@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.1 virtualenv at ~/cmp272" project-jdk-type="Python SDK" />
+=======
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.0 (C:\Users\Anup\Anaconda3\python.exe)" project-jdk-type="Python SDK" />
+>>>>>>> c0a05fb293ab2ef20617afa1195ff9d3df386cdd
 </project>
