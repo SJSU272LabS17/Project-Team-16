@@ -167,7 +167,10 @@ def heat_map_generator():
 #google_map api
 @app.route('/google', methods=['GET'])
 def google():
-    result = google_map()
+    if not request.json or not 'year' in request.json:
+        abort(400)
+    year = request.json['year']
+    result = google_map(year)
     return jsonify(result)
 
 #median income api
