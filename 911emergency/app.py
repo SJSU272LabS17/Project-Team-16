@@ -56,7 +56,6 @@ def handle_invalid_usage(error):
     response.status_code = error.status_code
     return response
 
-
 @app.route('/login', methods=['POST'])
 def authenticate():
     if session['logged_in'] == False:
@@ -121,7 +120,7 @@ schema = {
 }
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def emergency():
     input = request.json
     try:
@@ -134,7 +133,7 @@ def emergency():
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def trend():
     if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type' in request.json:
         abort(400)
