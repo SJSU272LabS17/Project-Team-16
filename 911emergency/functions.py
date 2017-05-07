@@ -107,6 +107,7 @@ def heat_map(year):
 
 #google map latitude longitude data
 def google_map():
+    title = data['title']
     lat = data['lat']
     lng = data['lng']
     i = 0
@@ -115,6 +116,12 @@ def google_map():
         l = []
         l.append(lat[i])
         l.append(lng[i])
+        if "EMS" in title[i]:
+            l.append("EMS")
+        elif "Fire" in title[i]:
+            l.append("Fire")
+        elif "Traffic" in title[i]:
+            l.append("Traffic")
         result[i] = l
         i = i + 1
     return result
