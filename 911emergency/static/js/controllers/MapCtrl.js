@@ -1,7 +1,7 @@
 angular.module("MapCtrl", []).controller("MapController", function ($scope, $http) {
 
 
-	
+	$scope.yearlist = ['2016','2017'];
 
     $scope.openInfoWindow = function(e, selectedMarker){
         e.preventDefault();
@@ -9,7 +9,10 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
     }
 
     $scope.getMapData = function(){
-    	$http.get('/google').then(function (response) {
+        var data = {
+            year : $scope.year
+        }
+    	$http.get('/google', JSON.stringify(data)).then(function (response) {
             var data = response.data;
     		console.log(response.data.length);
             var mapOptions = {
@@ -51,7 +54,7 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
                 
             }  
             
-            for (i = 0; i < 1000; i++){
+            for (i = 0; i < 7000; i++){
                 createMarker(data[i]);
             }
 
