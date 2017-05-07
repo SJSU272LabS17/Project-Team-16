@@ -28,7 +28,7 @@ def sub_category(year,emergency_type):
     l = [1] * len(result['title'])
     i = 0;
     df_new = df.values.tolist()
-    while i < len(result['title']):
+    while i < len(df_new):
         l[i] = df_new[i][0][5:]
         i = i + 1
     from collections import defaultdict
@@ -59,8 +59,6 @@ def emergency_overview(year):
     dictionary = [{"label": i , "value": j} for i,j in dictionary.items()]
     return dictionary
 
-# print (emergency_overview(''))
-
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
     trend_data = data[data['timeStamp'].str.contains(year)]
@@ -90,9 +88,9 @@ def emergency_trend_comparison(year, emergency_type, sub_emergency_type1, sub_em
 
 #Hourly data for plotting Heap map for Vehicle accidents
 def heat_map(year):
-    vehicle_accident = data[data['timeStamp'].str.contains('2016')]
+    vehicle_accident = data[data['timeStamp'].str.contains(year)]
     vehicle_accident = vehicle_accident[vehicle_accident['title'].str.contains('VEHICLE ACCIDENT')]
-    result = [1]*12
+    result = [1] * 12
     for i in range(1, 13):
         l = []
         for j in range(0, 24):
@@ -102,6 +100,10 @@ def heat_map(year):
             l.append(count)
         result[i - 1] = l
     return result
+    # if year == "2016":
+    #     return result_16
+    # elif year == "2017":
+    #     return result_17
 
 #google map latitude longitude data
 def google_map():
@@ -159,3 +161,5 @@ def small_business():
 def emergency_expenditure():
     result = {'2015':[1029868,463005], '2016': [2035999,839475]}
     return result
+
+

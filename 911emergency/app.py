@@ -1,12 +1,96 @@
-from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify
-#from flask_oauth import OAuth
+from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify,g
 import json
+# from flask_inputs.validators import JsonSchema
+from jsonschema import validate, ValidationError
 from urllib.request import urlopen
 from urllib.request import urlopen, URLError, Request
 from urllib.request import urlopen
+from flask_sqlalchemy import SQLAlchemy
+from flask_httpauth import HTTPBasicAuth
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSignature, SignatureExpired)
 from functions import *
+import  myexception
+
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['BASIC_AUTH_FORCE'] = True
+
+db = SQLAlchemy(app)
+auth = HTTPBasicAuth()
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(32), index = True)
+    password_hash = db.Column(db.String(128))
+
+    def hash_password(self, password):
+        self.password_hash = pwd_context.encrypt(password)
+
+    def verify_password(self, password):
+        return pwd_context.verify(password, self.password_hash)
+
+@app.route('/sign_up', methods = ['POST'])
+def new_user():
+    username = request.authorization.username
+    password = request.authorization.password
+    if username == '' or password == '':
+        raise myexception.Unauthorized("Please enter username and password", 401)  # missing arguments
+    elif User.query.filter_by(username = username).first() is not None:
+        raise myexception.UserExists("Already user exists", 402)  # existing user
+    else:
+        user = User(username = username)
+        user.hash_password(password)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify({ 'username': user.username })
+
+@app.errorhandler(myexception.MyExceptions)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+
+@app.route('/login', methods=['POST'])
+def authenticate():
+    if session['logged_in'] == False:
+        username = request.json.get('username')
+        password = request.json.get('password')
+        if username is None or password is None:
+            raise myexception.Unauthorized("Please enter username and password", 401)
+            # abort(400)  # missing arguments
+        elif User.query.filter_by(username=username).first() is not None:
+            verify_password(username,password)
+
+
+# @app.route('/api/resource')
+# @auth.login_required
+# def get_resource():
+#     return jsonify({'data': 'Hello, %s!' % g.user.username})
+
+@auth.verify_password
+def verify_password(username, password):
+    user = User.query.filter_by(username = username).first()
+    if not user or not user.verify_password(password):
+        return False
+    g.user = user
+    session['logged_in'] = True
+    return True
+
+@auth.error_handler
+def auth_error():
+   return "access denied"
+
+@app.route("/logout", methods=['GET', 'POST'])
+def logout():
+    session.pop('logged_in', None)
+    return (200)
 
 #home route
 @app.route('/')
@@ -29,14 +113,24 @@ def trend_sub_dropdown():
     result = sub_category(year,emergency_type)
     return jsonify(result)
 
+schema = {
+    "type" : "object",
+    "properties" : {
+    "year" : {"type" : "string"}
+    },
+}
 #emergency overview api
 @app.route('/emergency', methods=['GET', 'POST'])
+@auth.login_required
 def emergency():
-    if not request.json or not 'year' in request.json:
-        abort(400)
-    year = request.json['year']
-    result = emergency_overview(year)
-    return jsonify(result)
+    input = request.json
+    try:
+        validate(input, schema)
+        year = request.json['year']
+        result = emergency_overview(year)
+        return jsonify(result)
+    except ValidationError as e:
+        raise myexception.CheckPostData("year is integer, accepting string", 403)
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])
@@ -101,4 +195,4 @@ def expenditure():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(debug = True,threaded=True)

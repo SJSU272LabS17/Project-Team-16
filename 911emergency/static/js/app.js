@@ -1,3 +1,3 @@
 
 angular.module('sampleApp', ['ngRoute', 'appRoutes', 'MainCtrl', 'DonutCtrl',
-	'TrendCtrl', 'MapCtrl', 'FakeCallCtrl','OverviewCtrl','HeatmapCtrl']);
+	'TrendCtrl', 'MapCtrl', 'FakeCallCtrl','OverviewCtrl','HeatmapCtrl','LoginCtrl','RegisterCtrl']);
