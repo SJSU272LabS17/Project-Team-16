@@ -1,6 +1,10 @@
-<div ng-app="sampleApp" ng-controller="MapController">
-    <div id="map" ng-init="getMapData()"></div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'" ng-init="getMapData()">
+<div class = "panel panel-default" ng-app="sampleApp" ng-controller="MapController">
+	<div>
+		<select ng-model="year" ng-options="x for x in yearlist" style="margin-left:300px ">Year</select>
+		<input type="button" value="Visualize" ng-click="getMapData()" /> <br><br>
+	</div>
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
          <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
          <!-- <a href="#" ng-click="getMapData()">{{marker.title}}</a> -->
     </div>
