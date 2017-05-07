@@ -165,7 +165,7 @@ def heat_map_generator():
     return jsonify(result)
 
 #google_map api
-@app.route('/google', methods=['GET'])
+@app.route('/google', methods=['GET', 'POST'])
 def google():
     if not request.json or not 'year' in request.json:
         abort(400)
