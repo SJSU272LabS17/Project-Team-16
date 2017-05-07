@@ -12,7 +12,7 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
         var data = {
             year : $scope.year
         }
-    	$http.get('/google', JSON.stringify(data)).then(function (response) {
+    	$http.post('/google', JSON.stringify(data)).then(function (response) {
             var data = response.data;
     		console.log(response.data.length);
             var mapOptions = {
@@ -37,7 +37,7 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
                     //title : info.label
                 });
 
-                marker.content = '<div class="infoWindowContent">' + info[2] + '</div>';
+                marker.content = '<div class="infoWindowContent">' + '<h2>' + info[2] + '<h2>' + '</div>';
 
 
           //       var listener = google.maps.event.addListener(map, "idle", function () {
