@@ -51,7 +51,7 @@ angular.module("MapCtrl", []).controller("MapController", function ($scope, $htt
                 
             }  
             
-            for (i = 0; i < 5000; i++){
+            for (i = 0; i < 2000; i++){
                 createMarker(data[i]);
             }
 
