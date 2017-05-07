@@ -6,7 +6,7 @@ import json
 import os
 import numpy as np
 from itertools import groupby
-# import myexception
+import myexception
 
 # read 911 csv
 cwd = os.getcwd() + '/' + 'montgomeryPA_911.csv'
@@ -46,8 +46,8 @@ def sub_category(year,emergency_type):
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
-    # if (year == ''):
-    #     raise myexception.CheckPostData("Year is empty")
+    if (year == ''):
+         raise myexception.CheckPostData("Year is empty")
     overview_data = data[data['timeStamp'].str.contains(year)]
     overview_data_ems = overview_data[overview_data['title'].str.contains('EMS:')]
     overview_data_fire = overview_data[overview_data['title'].str.contains('Fire:')]

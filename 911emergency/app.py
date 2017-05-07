@@ -68,7 +68,6 @@ def authenticate():
         elif User.query.filter_by(username=username).first() is not None:
             verify_password(username,password)
 
-
 # @app.route('/api/resource')
 # @auth.login_required
 # def get_resource():
@@ -78,14 +77,15 @@ def authenticate():
 def verify_password(username, password):
     user = User.query.filter_by(username = username).first()
     if not user or not user.verify_password(password):
-        return False
+        raise myexception.Unauthorized("Unauthorised access", 401)
+        # return False
     g.user = user
     session['logged_in'] = True
     return True
 
-@auth.error_handler
-def auth_error():
-   return "access denied"
+# @auth.error_handler
+# def auth_error():
+#    return "Unauthorised Access"
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
@@ -134,6 +134,7 @@ def emergency():
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])
+@auth.login_required
 def trend():
     if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type' in request.json:
         abort(400)
