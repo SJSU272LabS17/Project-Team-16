@@ -15,3 +15,10 @@
   -  ```pip install -r requirements.txt```
 - Run the app
   - ```python3.6 app.py```
+
+
+**Docker steps**
+ - '''docker pull manika15/python3.6ubuntu:latest'''
+ - '''/root/Project-Team-16/911emergency'''
+ - ''' docker-compose up -d'''
+ - ''' docker logs <container-id> --follow'''

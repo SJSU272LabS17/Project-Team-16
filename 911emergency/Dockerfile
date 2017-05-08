@@ -1,4 +1,4 @@
-FROM ubuntu_python3.6
+FROM manika15/python3.6ubuntu
 # Update aptitude with new repo
 RUN apt-get update
 # Install software
@@ -8,3 +8,4 @@ WORKDIR ./Project-Team-16/911emergency
 RUN /usr/local/bin/pip3.6 install -r requirements.txt
 CMD ["/usr/local/bin/python3.6", "app.py"]
 EXPOSE 80
+
