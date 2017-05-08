@@ -77,7 +77,7 @@ def emergency_trend(year, emergency_type, sub_emergency_type):
 
     trend_data = data[data['timeStamp'].str.contains(year)]
     trend_data = trend_data[trend_data['title'].str.contains(sub_emergency_type)]
-    month = ['1454195838', '1456824984', '1459379838', '1462058238', '1464650238',
+    month = ['1454195838', '1456788622', '1459379838', '1462058238', '1464650238',
              '1467328638', '1469920638', '1472599038', '1475277438', '1477869438',
              '1480547838', '1483139838']
     dict_trend = {}
