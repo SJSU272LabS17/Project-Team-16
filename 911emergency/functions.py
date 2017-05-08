@@ -173,10 +173,10 @@ def small_business():
     overview_data_2016 = data[data['timeStamp'].str.contains('2016')]
     count_2016 = len(overview_data_2016.index)
     small_b = [{"label" : "Cleaning & Maintenance", "value": [[2013, 23889], [2014, 23567], [2015, 23422], [2016, 23011]]}, \
-               {"label" : "material moving", "value": [[2013, 24343], [2014, 22921], [2015, 21601], [2016, 20222]]}, \
+               {"label" : "Material Moving", "value": [[2013, 24343], [2014, 22921], [2015, 21601], [2016, 20222]]}, \
                {"label" : "Personal care", "value": [[2013, 13154], [2014, 16632], [2015, 17142], [2016, 18945]]}, \
-               {"label" : "Food and serving", "value": [[2013, 11778], [2014, 12931], [2015, 14167], [2016, 17498]]},
-               {"label": "911 calls", "value": [[2013, count_2013], [2014, count_2014], [2015, count_2015], [2016, count_2016]]}]
+               {"label" : "Food and Serving", "value": [[2013, 11778], [2014, 12931], [2015, 14167], [2016, 17498]]},
+               {"label": "911 Calls", "value": [[2013, count_2013], [2014, count_2014], [2015, count_2015], [2016, count_2016]]}]
     return small_b
 
 #fake call expenditure
