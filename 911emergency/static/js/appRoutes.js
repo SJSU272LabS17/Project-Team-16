@@ -1,4 +1,5 @@
-angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('appRoutes', [])
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
 	$routeProvider
 
@@ -54,17 +55,35 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 
 		.when('/login', {
-      controller: 'loginController',
-      templateUrl: 'static/views/login.html',
-      controllerAs: 'vm'
-    })
+	      controller: 'loginController',
+	      templateUrl: 'static/views/login.html',
+	      controllerAs: 'vm'
+	    })
 
-    .when('/register', {
-      controller: 'registerController',
-      templateUrl: 'static/views/register.html',
-      controllerAs: 'vm'
-	  });
+    	.when('/register', {
+	      controller: 'registerController',
+	      templateUrl: 'static/views/register.html',
+	      controllerAs: 'vm'
+		  });
 
-$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode(true);
 
-}]);
+}])
+.run( function($rootScope, $location, LoginService) {
+
+    // register listener to watch route changes
+    $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+      if ( LoginService.isValidUser() || 
+      	next.templateUrl != "static/views/trend_comparison.html" ){
+
+      }else {
+        // no logged user, we should be going to #login
+        if ( $location.path() == "/" || next.templateUrl == "views/login.html" ) {
+          // already going to #login, no redirect needed
+        } else {
+          // not going to #login, we should redirect now
+          $location.path( "/login" );
+        }
+      }         
+    });
+ });

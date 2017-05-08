@@ -2,9 +2,6 @@ from flask import Flask, render_template, request, make_response, url_for, flash
 import json
 # from flask_inputs.validators import JsonSchema
 from jsonschema import validate, ValidationError
-from urllib.request import urlopen
-from urllib.request import urlopen, URLError, Request
-from urllib.request import urlopen
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
 from passlib.apps import custom_app_context as pwd_context
@@ -211,4 +208,4 @@ def expenditure():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug = True,threaded=True)
+    app.run(debug = True,host='0.0.0.0',threaded=True)

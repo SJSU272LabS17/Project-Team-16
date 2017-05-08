@@ -163,8 +163,9 @@ background-image: url(/static/css/images/background.jpg);
 
 #map {
 			height: 700px;
-	    width: 1313px;
-	    margin: auto;
+			width: 1313px;
+			margin: auto;
+			top: 35px;
 }
 .infoWindowContent {
     font-size:  14px !important;

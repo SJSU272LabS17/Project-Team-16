@@ -47,9 +47,9 @@
 .alinharCentro{
   text-align: center;
 }
-.user-panel {
+/*.user-panel {
   padding: 10px;
-}
+}*/
 .user-panel:before,
 .user-panel:after {
   display: table;
@@ -310,6 +310,7 @@
 	<script src="/static/js/controllers/OverviewCtrl.js"></script>
 	<script src="/static/js/appRoutes.js"></script>
 	<script src="/static/js/app.js"></script>
+  <script src="/static/js/app.config.js"></script>
 	<script src="/static/libs/angular/angular.js"></script>
 	<script src="/static/libs/d3/d3.js"></script>
 	<script src="/static/libs/angularjs-nvd3-directives/angularjs-nvd3-directives.js"></script>
@@ -324,6 +325,7 @@
 	<script src="/static/js/controllers/TrendCtrl.js"></script>
 	<script src="/static/js/controllers/MapCtrl.js"></script>
 	<script src="/static/js/controllers/FakeCallCtrl.js"></script>
+  <script src="/static/js/services/LoginService.js"></script>
 
 </head>
 <body ng-app="sampleApp" ng-controller="OverviewController" style="overflow:hidden">
@@ -366,7 +368,7 @@
           <p style="color: rgb(105, 183, 105)">Would you  like to : </p>
         </div>
       </div>
-      <hr class="colorgraph">
+      <hr class="colorgraph" style="margin-top: 7px;margin-bottom: 10px">
       <li>
         <a href="/trend">
 	          <i class="fa fa-home"></i> <span>Trends</span>
