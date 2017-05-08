@@ -41,7 +41,6 @@ def new_user():
         db.session.add(user)
         db.session.commit()
         raise myexception.AccessGranted("New user added and Logged in", 200)
-        # return jsonify({ 'username': user.username })
 
 @app.errorhandler(myexception.MyExceptions)
 def handle_invalid_usage(error):
@@ -65,11 +64,9 @@ def verify_password(username, password):
     user = User.query.filter_by(username = username).first()
     if not user or not user.verify_password(password):
         raise myexception.Unauthorized("Invalid username or password", 401)
-        # return False
     g.user = user
     session['logged_in'] = True
     raise myexception.Unauthorized("Access Granted and logged in", 200)
-    # return True
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
