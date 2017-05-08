@@ -2,6 +2,7 @@
 angular.module('TrendCtrl', []).controller('TrendController', 
 	function($scope, $http, $rootScope, LoginService, $location, $window) {
 
+	$scope.year = '2017';
 	$scope.postdata = function (year) {
 		$scope.year = year;
 	}
