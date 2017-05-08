@@ -13,6 +13,10 @@ import  myexception
 app = Flask(__name__)
 
 app.config.from_pyfile('config.cfg')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+# app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
+# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+# app.config['BASIC_AUTH_FORCE'] = True
 
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
@@ -61,11 +65,6 @@ def authenticate():
         # abort(400)  # missing arguments
     elif User.query.filter_by(username=username).first() is not None:
         verify_password(username,password)
-
-# @app.route('/api/resource')
-# @auth.login_required
-# def get_resource():
-#     return jsonify({'data': 'Hello, %s!' % g.user.username})
 
 @auth.verify_password
 def verify_password(username, password):
