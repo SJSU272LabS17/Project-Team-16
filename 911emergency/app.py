@@ -8,14 +8,9 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as Serializer, BadSign
 from functions import *
 import  myexception
 
-
 app = Flask(__name__)
 
 app.config.from_pyfile('config.cfg')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-# app.config['SECRET_KEY'] = 'the quick brown fox jumps over the lazy dog'
-# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-# app.config['BASIC_AUTH_FORCE'] = True
 
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
@@ -75,10 +70,6 @@ def verify_password(username, password):
     session['logged_in'] = True
     raise myexception.Unauthorized("Access Granted and logged in", 200)
     # return True
-
-# @auth.error_handler
-# def auth_error():
-#    return "Unauthorised Access"
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
