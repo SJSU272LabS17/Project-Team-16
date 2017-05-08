@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, make_response, url_for, flash, redirect, session, abort, jsonify,g
 import json
-# from flask_inputs.validators import JsonSchema
 from jsonschema import validate, ValidationError
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
@@ -146,6 +145,7 @@ def trend():
 
 #comparison api
 @app.route('/trend_comparison', methods=['GET', 'POST'])
+@auth.login_required
 def trend_comparison():
     if not request.json:
         raise myexception.ImproperRequest ("Improper Clent request", 403)
@@ -207,6 +207,6 @@ def expenditure():
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug = True, host='0.0.0.0', threaded=True)
+    app.run(debug = True, threaded=True)
 
 # host='0.0.0.0',
