@@ -1,7 +1,15 @@
-<div class="jumbotron text-center">
-	<b><h2>Latest Emergency Trends</h2></b>
-	<div>
+<style>
+.jumbotron {
+    padding-top: 1px;
+    padding-bottom: 8px;
+  }
 
+</style>
+
+<div class="jumbotron text-center">
+	<h2>Latest Emergency Trends</h2></b>
+</div>
+	<div style="text-align: center; position: absolute; height: auto; top: 130px; right: auto; bottom: 0px; left: 245px;">
 	<select ng-model="year" ng-options="x for x in yearlist">Year</select>
 
 	<select ng-model="category" ng-init="categories()" ng-options="x for x in categoriesData" ng-change = "subcategories()">Category</select>
@@ -14,5 +22,3 @@
 	<div id="trendChart" ng-app='sampleApp' ng-controller="TrendController" style="width:70%;height:70%;margin-left:290px">
 		<svg width="70" height="70"></svg>
 	</div>
-
-</div>
