@@ -5,7 +5,7 @@ body { background: #151515;overflow:hidden; }
 
 .webdesigntuts-workshop {
 background-position : center top;
-background-image: url(/static/css/images/background.jpg);
+/*background-image: url(/static/css/images/background.jpg);*/
 	height: 100%;
 	position: absolute;
 	text-align: center;

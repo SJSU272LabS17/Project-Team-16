@@ -2,6 +2,20 @@ angular.module('MainCtrl', []).controller('MainController', function($scope,$tim
 
 	$scope.tagline = 'To the moon and back!';
 
+	$scope.resources = [
+		'static/css/videos/overviewBg.mp4'
+	],
+	$scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster',
+	$scope.fullScreen = false,
+	$scope.muted = true,
+	$scope.zIndex = '22'
+	$scope.pausePlay = false,
+	$scope.currentResourceIdx = 0;
+	$scope.playInfo = {};
+
+
+
+
 	$scope.overView = function () {
 		$location.path("/overview");
 	}

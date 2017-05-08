@@ -40,7 +40,24 @@ var app = angular.module("OverviewCtrl", []);
 
 
 
-app.controller("OverviewController", function ($scope) {
+app.controller("OverviewController", function ($scope,$location) {
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // $scope.place = {};
   //
