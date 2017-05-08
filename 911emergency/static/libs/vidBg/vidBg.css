@@ -19,6 +19,6 @@ video.vidBg-fullScreen {
 }
 
 video.vidBg-autoWidth {
-  width: 100%;
+  width: 128%;
   height: auto;
 }
