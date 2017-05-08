@@ -1,7 +1,11 @@
 angular.module('TrendCtrl', []).controller('TrendController', function($scope, $http) {
-	
-	
-	$scope.yearlist = ['2016','2015'];
+
+
+
+	$scope.postdata = function (year) {
+	$scope.year = year;
+}
+
 
 	$scope.categories = function(){
 		$http.post('/category').then(function (response) {
@@ -70,7 +74,7 @@ angular.module('TrendCtrl', []).controller('TrendController', function($scope, $
 	    	return chart;
   		});
 	})
-		
+
 	}
 
 
@@ -255,8 +259,5 @@ angular.module('TrendCtrl', []).controller('TrendController', function($scope, $
 	}
 
 
-	  
+
 	});
-
-
-
