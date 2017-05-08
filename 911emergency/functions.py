@@ -29,8 +29,15 @@ def sub_category(year,emergency_type):
     i = 0;
     df_new = df.values.tolist()
     while i < len(df_new):
-        l[i] = df_new[i][0][5:]
-        i = i + 1
+        if emergency_type == "Traffic":
+            l[i] = df_new[i][0][9:]
+            i = i + 1
+        elif emergency_type == "Fire":
+            l[i] = df_new[i][0][6:]
+            i = i + 1
+        else:
+            l[i] = df_new[i][0][5:]
+            i = i + 1
     from collections import defaultdict
     fq = defaultdict(int)
     for w in l:
