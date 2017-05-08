@@ -172,8 +172,14 @@ background-image: url(/static/css/images/background.jpg);
     padding-top: 10px;
 }
 h2 {
-    margin-bottom:0;
-    margin-top: 0;
+	font-family: 'Cabin', helvetica, arial, sans-serif;
+	letter-spacing: 0.1em;
+	font-size: 17px;
+	font-weight: 500;
+	text-transform: uppercase;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 body, html {
