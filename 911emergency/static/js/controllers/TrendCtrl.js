@@ -178,10 +178,7 @@ angular.module('TrendCtrl', []).controller('TrendController',
 
 		     chart.xAxis
 		        .tickValues( xTicks)
-		        // .tickFormat(function(d) {
-		        //     return d3.time.format('%b')(new Date(d*1000))
-		        //   })
-		        .axisLabel('Months');
+		        .axisLabel('Year');
 
 		      chart.yAxis
         		.tickFormat(d3.format(',.1%'))
