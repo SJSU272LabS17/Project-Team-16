@@ -95,7 +95,7 @@ angular.module('TrendCtrl', []).controller('TrendController',
 			sub_emergency_type1 : $scope.subcategory1,
 			sub_emergency_type2 : $scope.subcategory2
 		}
-
+		$http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(LoginService.username + ':' + LoginService.password);
 		$http.post('/trend_comparison',JSON.stringify(data)).then(function (response) {
 
 			var values = response.data;
