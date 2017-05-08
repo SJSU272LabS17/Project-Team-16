@@ -73,10 +73,14 @@ angular.module('appRoutes', [])
 
     // register listener to watch route changes
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-      if ( LoginService.isValidUser() || 
+	 		if(next.templateUrl== "static/views/overview.html"){
+				$location.path("/donut");
+			}
+			if ( LoginService.isValidUser() ||
       	next.templateUrl != "static/views/trend_comparison.html" ){
 
-      }else {
+      }
+			else {
         // no logged user, we should be going to #login
         if ( $location.path() == "/" || next.templateUrl == "views/login.html" ) {
           // already going to #login, no redirect needed
@@ -84,6 +88,6 @@ angular.module('appRoutes', [])
           // not going to #login, we should redirect now
           $location.path( "/login" );
         }
-      }         
+      }
     });
  });
