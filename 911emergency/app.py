@@ -58,14 +58,14 @@ def handle_invalid_usage(error):
 
 @app.route('/login', methods=['POST'])
 def authenticate():
-    if session['logged_in'] == False:
-        username = request.json.get('username')
-        password = request.json.get('password')
-        if username is None or password is None:
-            raise myexception.Unauthorized("Please enter username and password", 401)
-            # abort(400)  # missing arguments
-        elif User.query.filter_by(username=username).first() is not None:
-            verify_password(username,password)
+    # if session['logged_in'] == False:
+    username = request.authorization.username
+    password = request.authorization.password
+    if username is None or password is None:
+        raise myexception.Unauthorized("Please enter username and password", 401)
+        # abort(400)  # missing arguments
+    elif User.query.filter_by(username=username).first() is not None:
+        verify_password(username,password)
 
 # @app.route('/api/resource')
 # @auth.login_required
@@ -80,7 +80,8 @@ def verify_password(username, password):
         # return False
     g.user = user
     session['logged_in'] = True
-    return True
+    raise myexception.Unauthorized("Logged in", 406)
+    # return True
 
 # @auth.error_handler
 # def auth_error():
@@ -135,8 +136,14 @@ def emergency():
 @app.route('/emergency_trend', methods=['GET', 'POST'])
 # @auth.login_required
 def trend():
-    if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type' in request.json:
-        abort(400)
+    if not request.json:
+        raise myexception.ImproperRequest ("Improper Clent request", 403)
+    elif not 'year' in request.json:
+        raise myexception.CheckPostData ("Year missing/Year not a string", 403)
+    elif not 'emergency_type' in request.json:
+        raise myexception.CheckPostData("Emergency type missing/Emergency type not a string", 403)
+    elif not 'sub_emergency_type' in request.json:
+        raise myexception.CheckPostData("Sub emergency type missing/Sub emergency type not a string", 403)
     year = request.json['year']
     emergency_type = request.json['emergency_type']
     sub_emergency_type = request.json['sub_emergency_type']
@@ -146,8 +153,16 @@ def trend():
 #comparison api
 @app.route('/trend_comparison', methods=['GET', 'POST'])
 def trend_comparison():
-    if not request.json or not 'year' in request.json or not 'emergency_type' in request.json or not 'sub_emergency_type1' in request.json or not 'sub_emergency_type2' in request.json:
-        abort(400)
+    if not request.json:
+        raise myexception.ImproperRequest ("Improper Clent request", 403)
+    elif not 'year' in request.json:
+        raise myexception.CheckPostData ("Year missing/Year not a string", 403)
+    elif not 'emergency_type' in request.json:
+        raise myexception.CheckPostData("Emergency type missing/Emergency type not a string", 403)
+    elif not 'sub_emergency_type1' in request.json:
+        raise myexception.CheckPostData("Sub emergency type1 missing/Sub emergency type1 not a string", 403)
+    elif not 'sub_emergency_type2' in request.json:
+        raise myexception.CheckPostData("Sub emergency type2 missing/Sub emergency type2 not a string", 403)
     year = request.json['year']
     emergency_type = request.json['emergency_type']
     sub_emergency_type1 = request.json['sub_emergency_type1']

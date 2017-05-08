@@ -46,7 +46,7 @@ def sub_category(year,emergency_type):
 
 #Emergency overview for an year input by the user
 def emergency_overview(year):
-    if (year == ''):
+    if year == '':
          raise myexception.CheckPostData("Year is empty")
     overview_data = data[data['timeStamp'].str.contains(year)]
     overview_data_ems = overview_data[overview_data['title'].str.contains('EMS:')]
@@ -61,6 +61,13 @@ def emergency_overview(year):
 
 #Trend for an Emergency sub-category in a specific year
 def emergency_trend(year, emergency_type, sub_emergency_type):
+    if year == '':
+        raise myexception.CheckPostData("Year is empty")
+    elif emergency_type == '':
+        raise myexception.CheckPostData("Emergency Type is empty")
+    elif sub_emergency_type == '':
+        raise myexception.CheckPostData("Sub-Emergency Type is empty")
+
     trend_data = data[data['timeStamp'].str.contains(year)]
     trend_data = trend_data[trend_data['title'].str.contains(sub_emergency_type)]
     month = ['1454195838', '1456874238', '1459379838', '1462058238', '1464650238',

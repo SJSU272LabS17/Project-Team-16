@@ -22,3 +22,9 @@ class Unauthorized(MyExceptions):
 
 class CheckPostData(MyExceptions):
     """missing post data"""
+
+class ImproperRequest (MyExceptions):
+    """improper post data"""
+
+class AccessGranted (MyExceptions):
+    """access granted"""
