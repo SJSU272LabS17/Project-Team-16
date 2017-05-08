@@ -1,8 +1,8 @@
 
-angular.module('TrendCtrl', []).controller('TrendController', 
+angular.module('TrendCtrl', []).controller('TrendController',
 	function($scope, $http, $rootScope, LoginService, $location, $window) {
 
-	$scope.year = '2017';
+	$scope.year = '2016';
 	$scope.postdata = function (year) {
 		$scope.year = year;
 	}
@@ -40,7 +40,7 @@ angular.module('TrendCtrl', []).controller('TrendController',
 
 			var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
-			
+
 
 			$scope.trendData =  [
 			  {

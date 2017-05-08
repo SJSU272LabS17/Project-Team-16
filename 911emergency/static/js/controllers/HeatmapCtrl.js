@@ -14,16 +14,16 @@ app.controller("HeatMapController", function ($scope, $http) {
 		y: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August','September','October','November','December'],
 		z: [response.data[0],response.data[1],response.data[2],response.data[3],response.data[4],response.data[5],response.data[6],response.data[7],response.data[8],response.data[9],response.data[10],response.data[11]],
 	colorscale: [
-		['0.0', 'rgb(165,0,38)'],
-		['0.111111111111', 'rgb(215,48,39)'],
-		['0.222222222222', 'rgb(244,109,67)'],
-		['0.333333333333', 'rgb(253,174,97)'],
-		['0.444444444444', 'rgb(254,224,144)'],
-		['0.555555555556', 'rgb(224,243,248)'],
-		['0.666666666667', 'rgb(171,217,233)'],
-		['0.777777777778', 'rgb(116,173,209)'],
-		['0.888888888889', 'rgb(69,117,180)'],
-		['1.0', 'rgb(49,54,149)']
+		['0.0', 'rgb(49,54,149)'],
+		['0.111111111111', 'rgb(69,117,180)'],
+		['0.222222222222', 'rgb(116,173,209)'],
+		['0.333333333333', 'rgb(171,217,233)'],
+		['0.444444444444', 'rgb(224,243,248)'],
+		['0.555555555556', 'rgb(254,224,144)'],
+		['0.666666666667', 'rgb(253,174,97)'],
+		['0.777777777778', 'rgb(244,109,67)'],
+		['0.888888888889', 'rgb(215,48,39)'],
+		['1.0', 'rgb(165,0,38)']
 	],
 		type: 'heatmap'
 	}
