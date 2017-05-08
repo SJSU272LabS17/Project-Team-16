@@ -1,18 +1,19 @@
 var app = angular.module("LoginCtrl", []);
 
-app.controller("loginController", function ($scope, $http)
+app.controller("loginController", function ($scope, $http, LoginService, $location)
 {
+	$scope.login = function () {
+	    LoginService.setUsername($scope.username);
+	    LoginService.setPassword($scope.password);
+	    var authenticatePromise = LoginService.authenticate();
+	    authenticatePromise.then(function(res){
+	    	if(res){
+	          	$location.path( "/trend_comparison");
+	    	}else{
+	    		alert("Error Authenticating User");
+	    	}
+	    });
+ 	}
 
-	$scope.postdata = function (yearlist) {
-    var data = {
-     year: yearlist
-    }
 
-    $http.post('/login', JSON.stringify(data)).then(function (response) {
-
-
-    });
-
- }
-  $scope.postdata('2017');
 });

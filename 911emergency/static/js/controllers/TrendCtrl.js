@@ -1,11 +1,10 @@
-angular.module('TrendCtrl', []).controller('TrendController', function($scope, $http) {
 
-
+angular.module('TrendCtrl', []).controller('TrendController', 
+	function($scope, $http, $rootScope, LoginService, $location, $window) {
 
 	$scope.postdata = function (year) {
-	$scope.year = year;
-}
-
+		$scope.year = year;
+	}
 
 	$scope.categories = function(){
 		$http.post('/category').then(function (response) {
@@ -257,6 +256,24 @@ angular.module('TrendCtrl', []).controller('TrendController', function($scope, $
   		});
 	})
 	}
+
+	// $rootScope.$on('$routeChangeStart', function (event) {
+ //          console.log('route changed!!');
+ //          if (!LoginService.isValidUser()) {
+ //            console.log('DENY : Redirecting to Login');
+ //            event.preventDefault();
+ //           $window.addEventListener('$routeChangeStart', function(e) {
+	// 	      $rootScope.$apply(function() {
+	// 	        $location.path("/login");
+	// 	        console.log($location.path());
+	// 	    });
+ //  			});
+ //            //$location.path('/login').replace();
+ //          }
+ //          else {
+ //            console.log('ALLOW');
+ //          }
+ //      });
 
 
 

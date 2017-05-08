@@ -1,7 +1,10 @@
 .idea
 ../.idea/Project-Team.iml
 .DS_Store
-__pycache_
+__pycache__
 ../.idea/
 ../.idea/Project-Team.iml
 _
+/node_modules
+__pycache__/functions.cpython-36.pyc
+__pycache__/myexception.cpython-36.pyc
