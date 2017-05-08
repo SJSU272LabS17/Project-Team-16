@@ -42,13 +42,14 @@ def new_user():
     if username == '' or password == '':
         raise myexception.Unauthorized("Please enter username and password", 401)  # missing arguments
     elif User.query.filter_by(username = username).first() is not None:
-        raise myexception.UserExists("Already user exists", 402)  # existing user
+        raise myexception.UserExists("User Already exists", 402)  # existing user
     else:
         user = User(username = username)
         user.hash_password(password)
         db.session.add(user)
         db.session.commit()
-        return jsonify({ 'username': user.username })
+        raise myexception.AccessGranted("New user added and Logged in", 200)
+        # return jsonify({ 'username': user.username })
 
 @app.errorhandler(myexception.MyExceptions)
 def handle_invalid_usage(error):
@@ -76,11 +77,11 @@ def authenticate():
 def verify_password(username, password):
     user = User.query.filter_by(username = username).first()
     if not user or not user.verify_password(password):
-        raise myexception.Unauthorized("Unauthorised access", 401)
+        raise myexception.Unauthorized("Invalid username or password", 401)
         # return False
     g.user = user
     session['logged_in'] = True
-    raise myexception.Unauthorized("Logged in", 406)
+    raise myexception.Unauthorized("Access Granted and logged in", 200)
     # return True
 
 # @auth.error_handler
@@ -130,20 +131,20 @@ def emergency():
         result = emergency_overview(year)
         return jsonify(result)
     except ValidationError as e:
-        raise myexception.CheckPostData("year is integer, accepting string", 403)
+        raise myexception.CheckPostData("year is integer, accepting string", 1)
 
 #trend api
 @app.route('/emergency_trend', methods=['GET', 'POST'])
 # @auth.login_required
 def trend():
     if not request.json:
-        raise myexception.ImproperRequest ("Improper Clent request", 403)
+        raise myexception.ImproperRequest ("Improper Clent request", )
     elif not 'year' in request.json:
-        raise myexception.CheckPostData ("Year missing/Year not a string", 403)
+        raise myexception.CheckPostData ("Year missing/Year not a string", 1)
     elif not 'emergency_type' in request.json:
-        raise myexception.CheckPostData("Emergency type missing/Emergency type not a string", 403)
+        raise myexception.CheckPostData("Emergency type missing/Emergency type not a string", 2)
     elif not 'sub_emergency_type' in request.json:
-        raise myexception.CheckPostData("Sub emergency type missing/Sub emergency type not a string", 403)
+        raise myexception.CheckPostData("Sub emergency type missing/Sub emergency type not a string", 3)
     year = request.json['year']
     emergency_type = request.json['emergency_type']
     sub_emergency_type = request.json['sub_emergency_type']
