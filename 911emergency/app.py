@@ -66,7 +66,7 @@ def verify_password(username, password):
         raise myexception.Unauthorized("Invalid username or password", 401)
     g.user = user
     session['logged_in'] = True
-    # raise myexception.Unauthorized("Access Granted and logged in", 200)
+    raise myexception.Unauthorized("Access Granted and logged in", 200)
 
 @app.route("/logout", methods=['GET', 'POST'])
 def logout():
