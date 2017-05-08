@@ -1,19 +1,111 @@
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Palanquin:300,400,600,700|Lato:300,400|Pathway+Gothic+One|Source+Sans+Pro:300,400);
+
+	.d3plus_toggle .d3plus_node.d3plus_button_active {
+	    background-color: transparent !important;
+	    color: #ef6145 !important;
+	}
+
+	.jumbotron {
+	    padding-top: 1px;
+	    padding-bottom: 8px;
+	  }
+
+	.d3plus_drawer_ui {
+	  padding: 5px 10px 10px 20px !important;
+	}
+	div{
+	  border: 0;
+	  margin: 0;
+	  padding: 0;
+	}
+
+	.d3plus_toggle:not(:last-child) {
+	  border-right: 1px solid #ccc !important;
+	}
+
+	.d3plus_toggle {
+	  margin: 0 !important;
+	}
+
+	.d3plus_toggle > div {
+	  display: block !important;
+	}
+
+
+	.d3plus_toggle .d3plus_node {
+	  background-color: transparent !important;
+	  border: 0 !important;
+	  display: block !important;
+	  font-weight: 700 !important;
+	  letter-spacing: 1px !important;
+	  margin: 0 10px !important;
+	  text-transform: uppercase !important;
+	}
+
+	.d3plus_node {
+	  margin: 5px 0 0 !important;
+	  border: 1px solid #BDBDBD !important;
+	  color: #949494 !important;
+	  font-family: "Palanquin", sans-serif !important;
+	  letter-spacing: 0.03em !important;
+	  font-size: 13px !important;
+	}
+
+	.d3plus_toggle .d3plus_button_label {
+	  padding: 0 0 4px !important;
+	}
+
+	.d3plus_node .d3plus_button_label {
+	  padding: 3px 10px 5px !important;
+	}
+
+
+</style>
+
 <div class="jumbotron text-center">
-	<b><h2>Compare Emergency Trends</h2></b>
-	<div>
+	<div class = "wrapper1">
+	<h2 class="test1">Compare Emergency Trends</h2>
+	<div class= "test2" ng-bind="year"> </div>
+	<div style="clear:both"></div>
+	</div>
+</div>
+	<!-- <select ng-model="year" ng-options="x for x in yearlist">Year</select> -->
+	<div style="text-align: center; position: absolute; height: auto; top: 140px; right: auto; bottom: 0px; left: 245px;">
 
-	<select ng-model="year" ng-options="x for x in yearlist">Year</select>
-
-	<select ng-model="category" ng-init="categories()" ng-options="x for x in categoriesData" ng-change = "subcategories()">Category</select>
-
-	<select ng-model="subcategory1" ng-options="x for x in subcategoriesData">Sub-Category 1</select>
-
-	<select ng-model="subcategory2" ng-options="x for x in subcategoriesData">Sub-Category 2</select>
-
-	<input type="button" value="Compare" ng-click="compareTrends()" /> <br/><br/>
+	<div id="d3plus_drawer" style="text-align: center; position: absolute; height: auto; right: auto; width: 200px;">
+	<div class="d3plus_drawer_ui" style="display: inline-block; padding: 5px;">
+	<div id="d3plus_toggle_default2" style="position: relative; overflow: visible; vertical-align: top; display: inline-block; margin: 0px;">
+	<div class="d3plus_toggle" style="display: inline-block; vertical-align: top;">
+	<div id="d3plus_button_default1" style="position: relative; overflow: visible; vertical-align: top; display: inline-block; margin: 0px;">
+	<div class="d3plus_node d3plus_button_active" style="background-color: rgb(204, 204, 204); color: rgba(68, 68, 68, 0.74902); border-color: rgb(204, 204, 204); position: relative; margin: 0px; display: inline-block; border-style: solid; border-width: 1px; font-family: Palanquin; font-size: 12px; font-weight: 300; letter-spacing: 0px;">
+	<div class="d3plus_button_element d3plus_button_label" ng-click="postdata('2016');" style="display: block; background-image: none; background-color: transparent; background-size: 100%; text-align: left; position: static; width: auto; height: auto; margin-top: 0px; top: auto; left: auto; right: auto; transition: none; transform: none; opacity: 1; padding: 5px;cursor:pointer">2016</div>
+	</div>
+	</div>
+	</div>
+	<div class="d3plus_toggle" style="display: inline-block; vertical-align: top;">
+	<div id="d3plus_button_default1" style="position: relative; overflow: visible; vertical-align: top; display: inline-block; margin: 0px;">
+	<div class="d3plus_node d3plus_button_active" style="background-color: rgb(204, 204, 204); color: rgba(68, 68, 68, 0.74902); border-color: rgb(204, 204, 204); position: relative; margin: 0px; display: inline-block; border-style: solid; border-width: 1px; font-family: Palanquin; font-size: 12px; font-weight: 300; letter-spacing: 0px;">
+	<div class="d3plus_button_element d3plus_button_label" ng-click="postdata('2017');" style="display: block; background-image: none; background-color: transparent; background-size: 100%; text-align: left; position: static; width: auto; height: auto; margin-top: 0px; top: auto; left: auto; right: auto; transition: none; transform: none; opacity: 1; padding: 5px;cursor:pointer">2017</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 	</div>
 
-	<div id="trendCompChart" ng-app='sampleApp' ng-controller="TrendController"  style="width:70%;height:70%;margin-left:290px">
+	<!-- <select ng-model="year" ng-options="x for x in yearlist">Year</select> -->
+
+	<select class="form-control"  id="sel1" style="margin-left: 170px; position: relative; width: 92px;" ng-model="category" ng-init="categories()" ng-options="x for x in categoriesData" ng-change = "subcategories()">Category</select>
+
+	<select class="form-control"  id="sel1" style="left: 277px; position: absolute;top:0px;" ng-model="subcategory1" ng-options="x for x in subcategoriesData">Sub-Category 1</select>
+
+	<select class="form-control"  id="sel1" style="left: 577px; position: absolute;top:0px;" ng-model="subcategory2" ng-options="x for x in subcategoriesData" ng-change="compareTrends()">Sub-Category 2</select>
+
+	<!-- <input type="button" value="Compare" ng-click="compareTrends()" /> <br/><br/> -->
+	</div>
+
+	<div id="trendCompChart" ng-app='sampleApp' ng-controller="TrendController"  style="width:70%;height:70%;margin-left:290px;margin-top:73px">
 		<svg width="70" height="70"></svg>
 	</div>
 
