@@ -6,7 +6,8 @@ app.controller("DonutController", function ($scope, $http) {
 	var data = {
 	 year: yearlist
 	}
-
+	$scope.yearSelected  = yearlist;
+	
 	$http.post('/emergency', JSON.stringify(data)).then(function (response) {
 
 
