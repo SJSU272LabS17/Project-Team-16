@@ -38,6 +38,10 @@ angular.module('TrendCtrl', []).controller('TrendController',
 				xTicks.push(values[i][0]);
 			}
 
+			var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+			
+
 			$scope.trendData =  [
 			  {
 			    "key": $scope.subcategory,
@@ -56,8 +60,13 @@ angular.module('TrendCtrl', []).controller('TrendController',
 		     chart.xAxis
 		        .tickValues(xTicks)
 		        .tickFormat(function(d) {
-		            return d3.time.format('%x')(new Date(d))
+		        	var date = new Date(d*1000);
+		            return d3.time.format('%b')(date);
 		         })
+		  //       chart.xAxis.tickValues([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+				// .tickFormat(function(d){
+				//     return days[d]
+				// })
 		        .axisLabel('Months');
 
 		     chart.yAxis
@@ -116,7 +125,7 @@ angular.module('TrendCtrl', []).controller('TrendController',
 		     chart.xAxis
 		        .tickValues(  [ 1454195838, 1456874238, 1459379838, 1462058238, 1464650238, 1467328638, 1469920638, 1472599038, 1475277438, 1477869438, 1480547838,1483139838 ])
 		        .tickFormat(function(d) {
-		            return d3.time.format('%x')(new Date(d))
+		            return d3.time.format('%b')(new Date(d*1000))
 		          })
 		        .axisLabel('Months');
 
@@ -169,9 +178,9 @@ angular.module('TrendCtrl', []).controller('TrendController',
 
 		     chart.xAxis
 		        .tickValues( xTicks)
-		        .tickFormat(function(d) {
-		            return d3.time.format('%b')(new Date(d))
-		          })
+		        // .tickFormat(function(d) {
+		        //     return d3.time.format('%b')(new Date(d*1000))
+		        //   })
 		        .axisLabel('Months');
 
 		      chart.yAxis
@@ -236,10 +245,10 @@ angular.module('TrendCtrl', []).controller('TrendController',
 
 		     chart.xAxis
 		        .tickValues( xTicks)
-		        .tickFormat(function(d) {
-		            return d3.time.format('%b')(new Date(d))
-		          })
-		        .axisLabel('Months');
+		        // .tickFormat(function(d) {
+		        //     return new Date(d*1000).getFullYear();
+		        //   })
+		        .axisLabel('Year');
 
 		      chart.yAxis
         		.tickFormat(d3.format(',.1%'))
