@@ -20,6 +20,7 @@ We will also compare the occurrences of different emergency types like Assault, 
 If all 3 implemented , APPROVED
 
 # Our Web Application Link: http://ec2-52-24-147-67.us-west-2.compute.amazonaws.com
+# Our Project Report: https://github.com/SJSU272LabS17/Project-Team-16/blob/master/cmpe272projectpaper.pdf
 
 
 
