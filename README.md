@@ -19,6 +19,8 @@ We will also compare the occurrences of different emergency types like Assault, 
 <li> bring the home value data into picture and find correlation
 If all 3 implemented , APPROVED
 
+# Our Web Application Link: http://ec2-52-24-147-67.us-west-2.compute.amazonaws.com
+
 
 
 ####################################################################
